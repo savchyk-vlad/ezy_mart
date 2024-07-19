@@ -1,0 +1,47 @@
+{
+  "name": "ezymart",
+  "version": "1.0.0",
+  "main": "expo/AppEntry.js",
+  "scripts": {
+    "start": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "web": "expo start --web"
+  },
+  "dependencies": {
+    "@expo-google-fonts/inter": "^0.2.3",
+    "@expo-google-fonts/plus-jakarta-sans": "^0.2.3",
+    "@expo-google-fonts/poppins": "^0.2.3",
+    "@expo/metro-runtime": "~3.2.1",
+    "@react-native-async-storage/async-storage": "1.23.1",
+    "@react-native-community/blur": "^4.4.0",
+    "@react-navigation/native-stack": "^6.10.0",
+    "@react-navigation/stack": "^6.4.0",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "expo": "~51.0.20",
+    "expo-app-loading": "^2.1.1",
+    "expo-blur": "~13.0.2",
+    "expo-font": "~12.0.8",
+    "expo-image": "~1.12.12",
+    "expo-status-bar": "~1.12.1",
+    "formik": "^2.4.6",
+    "install": "^0.13.0",
+    "react": "18.2.0",
+    "react-dom": "18.2.0",
+    "react-native": "0.74.3",
+    "react-native-animated-pagination-dots": "^0.1.73",
+    "react-native-reanimated": "~3.10.1",
+    "react-native-svg": "^15.2.0",
+    "react-native-web": "~0.19.10",
+    "yup": "^1.4.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.20.0",
+    "@tsconfig/react-native": "^3.0.5",
+    "@types/jest": "^29.5.12",
+    "@types/react": "^18.3.3",
+    "@types/react-test-renderer": "^18.3.0",
+    "typescript": "^5.5.3"
+  },
+  "private": true
+}
