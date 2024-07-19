@@ -1,9 +1,29 @@
 import { FlatList, View, Animated } from "react-native";
 import React, { useEffect, useState } from "react";
 
-import { MOCK_ONBOARDING_SCREENS } from "~containers/Core/Navigation/screens";
 import { OnboardingContainerView } from "~components";
-import { screenHeight, screenWidth } from "~constants";
+import { SCREENS, screenHeight, screenWidth } from "~constants";
+import { imagePathes } from "~assets/images/images";
+
+
+const MOCK_ONBOARDING_SCREENS = [
+  {
+    name: SCREENS.ONBOARDING,
+    headerText: "Discover Endless Shopping Possibilities",
+    imagePath: imagePathes.onboardingBg1ImagePath,
+  },
+  {
+    name: SCREENS.ONBOARDING,
+    headerText: "Effortless Shopping Experience",
+    imagePath: imagePathes.onboardingBg2ImagePath,
+  },
+  {
+    name: SCREENS.ONBOARDING,
+    headerText: "Stay Ahead of the Latest Trends",
+    paragraph: "Welcome Aboard EziBuy: Navigating Your Health Journey",
+    imagePath: imagePathes.onboardingBg3ImagePath,
+  },
+];
 
 const Onboarding = () => {
   const [scrollIndex, setScrollIndex] = useState(0);

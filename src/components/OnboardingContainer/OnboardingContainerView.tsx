@@ -10,8 +10,7 @@ import { BlurView } from "expo-blur";
 import { ExpandingDot } from "react-native-animated-pagination-dots";
 
 import { RightArrowIcon } from "~assets/images/icons/IconsSvg";
-import useOnboarding from "~containers/Onboarding/hooks/useOnboarding";
-import { MOCK_ONBOARDING_SCREENS } from "~containers/Core/Navigation/screens";
+import useOnboarding from "~containers/Onboarding/hooks/useOnboarding";;
 import { ThemeColors } from "~assets";
 import { SCREENS } from "~constants";
 import styles from "./styles";
@@ -73,7 +72,7 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
         {nextScreenName && (
           <View style={styles.popUpBottomContainer}>
             <ExpandingDot
-              data={MOCK_ONBOARDING_SCREENS}
+              data={Array.from(Array(3))}
               expandingDotWidth={40}
               scrollX={scrollX}
               inActiveDotOpacity={0.1}
