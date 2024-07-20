@@ -7,8 +7,9 @@ import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
   Text,
-} from "react-native";
-import React, { useState } from "react";
+  TextInputProps,
+} from 'react-native';
+import React, { useState } from 'react';
 
 import {
   EnvelopeIcon,
@@ -16,11 +17,12 @@ import {
   EyeSlashIcon,
   LockIcon,
   SuccessIcon,
-} from "~assets/images/icons/IconsSvg";
-import styles from "./styles";
-import { FormikErrors } from "formik";
+} from '~assets/images/icons/IconsSvg';
+import styles from './styles';
+import { FormikErrors } from 'formik';
 
-type IInputProps = {
+
+interface IInputProps {
   typeInput: string;
   handleChange: (e: string) => void;
   handleBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
@@ -35,7 +37,8 @@ type IInputProps = {
     email: string;
     password: string;
   }>;
-};
+  autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
+}
 
 const CustomFormInput = ({
   typeInput,
@@ -49,53 +52,44 @@ const CustomFormInput = ({
   withSuccesIcon,
   withVisibilityButton,
   error,
+  autoCapitalize,
 }: IInputProps) => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
   const handleVisibilityContent = () =>
     setPasswordVisibility(!passwordVisibility);
 
-  // const ICON_COLOR = () => {
-  //   if (error?.email || error?.password) {
-  //     return "!!value.email.length && isEmailError";
-  //   } else if (value.length > 0) {
-  //     return "#1D4ED8";
-  //   }
-  //   return "#A7A8AC";
-  // };
-
   const isPasswordError = error?.password;
   const isEmailError = error?.email;
 
   const EMAIL_ICON_COLOR =
     !!value.email.length && isEmailError
-      ? "#FF5C5C"
+      ? '#FF5C5C'
       : !!value.email.length
-      ? "#1D4ED8"
-      : "#A7A8AC";
+      ? '#1D4ED8'
+      : '#A7A8AC';
 
   const PASSWORD_ICON_COLOR =
     !!value.password.length && isPasswordError
-      ? "#FF5C5C"
+      ? '#FF5C5C'
       : !!value.password.length
-      ? "#1D4ED8"
-      : "#A7A8AC";
+      ? '#1D4ED8'
+      : '#A7A8AC';
 
   const EMAIL_ERROR_COLOR =
-    (!!value.email.length && isEmailError && "#FF5C5C") || "#E5E7EB";
+    (!!value.email.length && isEmailError && '#FF5C5C') || '#E5E7EB';
 
   const PASSWORD_ERROR_COLOR =
-    (!!value.password.length && isPasswordError && "#FF5C5C") || "#E5E7EB";
+    (!!value.password.length && isPasswordError && '#FF5C5C') || '#E5E7EB';
 
-  if (typeInput === "EMAIL") {
+  if (typeInput === 'EMAIL') {
     return (
       <View
         style={[
           styles.email_input_container,
           containerStyles,
           { borderColor: EMAIL_ERROR_COLOR },
-        ]}
-      >
+        ]}>
         <View style={styles.email_input_inner_view}>
           <View style={{ paddingRight: 10 }}>
             <EnvelopeIcon fill={EMAIL_ICON_COLOR} />
@@ -108,10 +102,11 @@ const CustomFormInput = ({
             value={value.email}
             placeholder={placeholder}
             inputMode={inputMode}
+            autoCapitalize={autoCapitalize}
           />
 
           {withSuccesIcon && !!value.email.length && !isEmailError && (
-            <SuccessIcon style={{ opacity: 1}} />
+            <SuccessIcon style={{ opacity: 1 }} />
           )}
         </View>
 
@@ -124,15 +119,14 @@ const CustomFormInput = ({
     );
   }
 
-  if (typeInput === "PASSWORD") {
+  if (typeInput === 'PASSWORD') {
     return (
       <View
         style={[
           styles.password_input_container,
           containerStyles,
           { borderColor: PASSWORD_ERROR_COLOR },
-        ]}
-      >
+        ]}>
         <View style={styles.password_input_inner_view}>
           <View style={{ paddingRight: 14 }}>
             <LockIcon fill={PASSWORD_ICON_COLOR} />
@@ -146,14 +140,14 @@ const CustomFormInput = ({
             placeholder={placeholder}
             inputMode={inputMode}
             secureTextEntry={withVisibilityButton && !passwordVisibility}
+            autoCapitalize={autoCapitalize}
           />
         </View>
 
         {withVisibilityButton && (
           <TouchableOpacity
             onPress={handleVisibilityContent}
-            style={{ padding: 10 }}
-          >
+            style={{ padding: 10 }}>
             {!passwordVisibility ? <EyeSlashIcon /> : <EyeIcon />}
           </TouchableOpacity>
         )}

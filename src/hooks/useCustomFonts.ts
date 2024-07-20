@@ -18,7 +18,7 @@ import {
   Poppins_800ExtraBold_Italic,
   Poppins_900Black,
   Poppins_900Black_Italic,
-} from "@expo-google-fonts/poppins";
+} from '@expo-google-fonts/poppins';
 
 import {
   Inter_100Thin,
@@ -30,7 +30,7 @@ import {
   Inter_700Bold,
   Inter_800ExtraBold,
   Inter_900Black,
-} from "@expo-google-fonts/inter";
+} from '@expo-google-fonts/inter';
 
 import {
   PlusJakartaSans_200ExtraLight,
@@ -47,9 +47,9 @@ import {
   PlusJakartaSans_600SemiBold_Italic,
   PlusJakartaSans_700Bold_Italic,
   PlusJakartaSans_800ExtraBold_Italic,
-} from "@expo-google-fonts/plus-jakarta-sans";
+} from '@expo-google-fonts/plus-jakarta-sans';
 
-const useCustomFonts = () => {
+export const useCustomFonts = () => {
   const [fontsLoaded] = useFonts({
     Poppins_100Thin,
     Poppins_100Thin_Italic,
@@ -96,5 +96,3 @@ const useCustomFonts = () => {
 
   return { fontsLoaded };
 };
-
-export default useCustomFonts;
