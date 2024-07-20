@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import {
   View,
   TextInput,
@@ -7,9 +8,7 @@ import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
   Text,
-  TextInputProps,
 } from 'react-native';
-import React, { useState } from 'react';
 
 import {
   EnvelopeIcon,
@@ -17,10 +16,9 @@ import {
   EyeSlashIcon,
   LockIcon,
   SuccessIcon,
+  UserIcon,
 } from '~assets/images/icons/IconsSvg';
 import styles from './styles';
-import { FormikErrors } from 'formik';
-
 
 interface IInputProps {
   typeInput: string;
@@ -30,13 +28,10 @@ interface IInputProps {
   inputMode: InputModeOptions;
   inputStyles?: ViewStyle;
   containerStyles?: ViewStyle;
-  value: { email: string; password: string };
+  value: string | undefined;
   withSuccesIcon?: boolean;
   withVisibilityButton?: boolean;
-  error: FormikErrors<{
-    email: string;
-    password: string;
-  }>;
+  error: string | undefined;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
 }
 
@@ -59,107 +54,73 @@ const CustomFormInput = ({
   const handleVisibilityContent = () =>
     setPasswordVisibility(!passwordVisibility);
 
-  const isPasswordError = error?.password;
-  const isEmailError = error?.email;
+  const isTypeEmail = typeInput === 'EMAIL';
+  const isTypePassword = typeInput === 'PASSWORD';
+  const isTypeUserName = typeInput === 'USER_NAME';
 
-  const EMAIL_ICON_COLOR =
-    !!value.email.length && isEmailError
-      ? '#FF5C5C'
-      : !!value.email.length
-      ? '#1D4ED8'
-      : '#A7A8AC';
+  const ICON_COLOR = () => {
+    if (value?.length && error) {
+      return '#FF5C5C';
+    } else if (value?.length) {
+      return '#1D4ED8';
+    }
 
-  const PASSWORD_ICON_COLOR =
-    !!value.password.length && isPasswordError
-      ? '#FF5C5C'
-      : !!value.password.length
-      ? '#1D4ED8'
-      : '#A7A8AC';
+    return '#A7A8AC';
+  };
 
-  const EMAIL_ERROR_COLOR =
-    (!!value.email.length && isEmailError && '#FF5C5C') || '#E5E7EB';
+  const ERROR_COLOR = () => {
+    if (value?.length && error) {
+      return '#FF5C5C';
+    }
 
-  const PASSWORD_ERROR_COLOR =
-    (!!value.password.length && isPasswordError && '#FF5C5C') || '#E5E7EB';
+    return '#E5E7EB';
+  };
 
-  if (typeInput === 'EMAIL') {
-    return (
-      <View
-        style={[
-          styles.email_input_container,
-          containerStyles,
-          { borderColor: EMAIL_ERROR_COLOR },
-        ]}>
-        <View style={styles.email_input_inner_view}>
-          <View style={{ paddingRight: 10 }}>
-            <EnvelopeIcon fill={EMAIL_ICON_COLOR} />
-          </View>
-
-          <TextInput
-            style={[styles.email_input, inputStyles]}
-            onChangeText={handleChange}
-            onBlur={handleBlur}
-            value={value.email}
-            placeholder={placeholder}
-            inputMode={inputMode}
-            autoCapitalize={autoCapitalize}
-          />
-
-          {withSuccesIcon && !!value.email.length && !isEmailError && (
-            <SuccessIcon style={{ opacity: 1 }} />
-          )}
+  return (
+    <View
+      style={[
+        styles.input_container,
+        containerStyles,
+        { borderColor: ERROR_COLOR() },
+      ]}>
+      <View style={styles.input_inner_view}>
+        <View style={styles.input_icon_container}>
+          {isTypeEmail && <EnvelopeIcon fill={ICON_COLOR()} />}
+          {isTypeUserName && <UserIcon fill={ICON_COLOR()} />}
+          {isTypePassword && <LockIcon fill={ICON_COLOR()} />}
         </View>
 
-        {value.email.length > 0 && (
-          <Text style={[styles.error_text, { color: EMAIL_ERROR_COLOR }]}>
-            {error.email}
-          </Text>
+        <TextInput
+          style={[styles.input, inputStyles]}
+          onChangeText={handleChange}
+          onBlur={handleBlur}
+          value={value}
+          placeholder={placeholder}
+          inputMode={inputMode}
+          secureTextEntry={withVisibilityButton && !passwordVisibility}
+          autoCapitalize={autoCapitalize}
+        />
+
+        {withSuccesIcon && !error && (
+          <SuccessIcon style={styles.success_icon} />
         )}
-      </View>
-    );
-  }
-
-  if (typeInput === 'PASSWORD') {
-    return (
-      <View
-        style={[
-          styles.password_input_container,
-          containerStyles,
-          { borderColor: PASSWORD_ERROR_COLOR },
-        ]}>
-        <View style={styles.password_input_inner_view}>
-          <View style={{ paddingRight: 14 }}>
-            <LockIcon fill={PASSWORD_ICON_COLOR} />
-          </View>
-
-          <TextInput
-            style={[styles.password_input, inputStyles]}
-            onChangeText={handleChange}
-            onBlur={handleBlur}
-            value={value.password}
-            placeholder={placeholder}
-            inputMode={inputMode}
-            secureTextEntry={withVisibilityButton && !passwordVisibility}
-            autoCapitalize={autoCapitalize}
-          />
-        </View>
 
         {withVisibilityButton && (
           <TouchableOpacity
             onPress={handleVisibilityContent}
-            style={{ padding: 10 }}>
+            style={styles.visibility_button}>
             {!passwordVisibility ? <EyeSlashIcon /> : <EyeIcon />}
           </TouchableOpacity>
         )}
-
-        {value.password.length > 0 && (
-          <Text style={[styles.error_text, { color: PASSWORD_ERROR_COLOR }]}>
-            {error.password}
-          </Text>
-        )}
       </View>
-    );
-  }
+
+      {value && value?.length && (
+        <Text style={[styles.error_text, { color: ERROR_COLOR() }]}>
+          {error}
+        </Text>
+      )}
+    </View>
+  );
 };
 
 export default CustomFormInput;
