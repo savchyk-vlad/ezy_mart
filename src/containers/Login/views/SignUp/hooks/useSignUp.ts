@@ -1,14 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
 import { NavigationProps } from '~types/navigationTypes/navigation.types';
 
-import { SCREENS } from '~constants';
-
-export const useSignIn = () => {
+export const useSignUp = () => {
   const navigation = useNavigation<NavigationProps>();
 
-  const goToSignUp = () => {
-    navigation.navigate(SCREENS.SIGN_UP, {});
-  };
+  const goBack = () => navigation.goBack();
 
-  return { goToSignUp };
+  return { goBack };
 };

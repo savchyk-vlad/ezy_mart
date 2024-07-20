@@ -1,135 +1,169 @@
-import React, { useState } from "react";
-import {
-  View,
-  SafeAreaView,
-  ScrollView,
-  TouchableOpacity,
-  Text,
-} from "react-native";
-import { Formik } from "formik";
-import * as yup from "yup";
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity } from 'react-native';
+import { CheckBox } from 'react-native-elements';
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { Formik } from 'formik';
 
 import {
-  AppleIcon,
-  FacebookIcon,
-  GoogleIcon,
-} from "~assets/images/icons/IconsSvg";
-import { CustomFormInput, TouchableOpacityButton } from "~components";
-import { ThemeColors } from "~assets";
-import styles from "./styles";
+  CustomFormInput,
+  CustomModal,
+  KeyboardDismissWrapper,
+} from '~components';
+import { PLATFORM } from '~constants';
+import { useValidation } from './hooks/useValidation';
+import styles from './styles';
+import { useSignUp } from './hooks/useSignUp';
 
-const validationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .required("*email is required")
-    .email("*the email is incorrect"),
-  password: yup
-    .string()
-    .required("*password is required")
-    .min(8, "*password must contain at least 8 characters"),
-});
+const initialValues = {
+  userName: '',
+  email: '',
+  password: '',
+  password_confirmation: '',
+};
 
 const SignUp = () => {
+  const { validationSchema } = useValidation();
+  const { goBack } = useSignUp();
+
+  const [checkboxStatus, setCheckboxStatus] = useState(false);
+  const [isModalVisible, setModalVisible] = useState(false);
+
+  const handleVisibilityModal = () => {
+    setModalVisible(!isModalVisible);
+  };
+
+  const goBackHandle = () => {
+    let timeout: number;
+    handleVisibilityModal();
+
+    timeout = setTimeout(() => goBack(), 400);
+    return () => clearTimeout(timeout);
+  };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: ThemeColors.white }}>
-      <ScrollView>
-        <Formik
-          initialValues={{ email: "", password: "" }}
-          onSubmit={(values) => console.log(values)}
-          validationSchema={validationSchema}
-        >
-          {({
-            handleChange,
-            handleBlur,
-            handleSubmit,
-            values,
-            errors,
-            isValid,
-          }) => (
-            <View
-              style={{
-                paddingHorizontal: 30,
-                paddingTop: 60,
-              }}
-            >
-              <CustomFormInput
-                typeInput={"EMAIL"}
-                handleChange={handleChange("email")}
-                handleBlur={handleBlur("email")}
-                placeholder={"Enter your email"}
-                inputMode={"email"}
-                value={values}
-                error={errors}
-                withSuccesIcon={true}
-              />
+    <KeyboardDismissWrapper>
+      <KeyboardAwareScrollView
+        style={styles.container}
+        enableOnAndroid={true}
+        extraHeight={PLATFORM.isAndroid ? 50 : 0}
+        extraScrollHeight={50}
+        enableResetScrollToCoords={false}
+        showsVerticalScrollIndicator={false}
+        keyboardShouldPersistTaps="always">
+        <View style={styles.container}>
+          <Formik
+            validateOnMount={true}
+            initialValues={initialValues}
+            onSubmit={values => {
+              console.log(values);
+              handleVisibilityModal();
+            }}
+            validationSchema={validationSchema}>
+            {({
+              handleChange,
+              handleBlur,
+              handleSubmit,
+              values,
+              errors,
+              isValid,
+            }) => (
+              <View style={styles.form_container}>
+                <CustomFormInput
+                  typeInput={'USER_NAME'}
+                  handleChange={handleChange('userName')}
+                  handleBlur={handleBlur('userName')}
+                  placeholder={'Enter your name'}
+                  inputMode={'text'}
+                  value={values.userName}
+                  error={errors.userName}
+                  withSuccesIcon={true}
+                />
 
-              <CustomFormInput
-                typeInput={"PASSWORD"}
-                handleChange={handleChange("password")}
-                handleBlur={handleBlur("password")}
-                placeholder={"Enter your password"}
-                inputMode={"text"}
-                value={values}
-                error={errors}
-                withSuccesIcon={true}
-                withVisibilityButton
-              />
+                <CustomFormInput
+                  typeInput={'EMAIL'}
+                  handleChange={handleChange('email')}
+                  handleBlur={handleBlur('email')}
+                  placeholder={'Enter your email'}
+                  inputMode={'email'}
+                  value={values.email}
+                  error={errors.email}
+                  withSuccesIcon={true}
+                  autoCapitalize={'none'}
+                />
 
-              <TouchableOpacity style={{ marginTop: 20 }}>
-                <Text style={styles.forgot_password_text}>
-                  Forgot Password?
-                </Text>
-              </TouchableOpacity>
+                <CustomFormInput
+                  typeInput={'PASSWORD'}
+                  handleChange={handleChange('password')}
+                  handleBlur={handleBlur('password')}
+                  placeholder={'Enter your password'}
+                  inputMode={'text'}
+                  value={values.password}
+                  error={errors.password}
+                  withSuccesIcon={true}
+                  withVisibilityButton
+                />
 
-              <TouchableOpacity
-                disabled={!isValid}
-                onPress={handleSubmit}
-                style={styles.submit_button_container}
-              >
-                <Text style={styles.submit_button_text}>Login</Text>
-              </TouchableOpacity>
+                <CustomFormInput
+                  typeInput={'PASSWORD'}
+                  handleChange={handleChange('password_confirmation')}
+                  handleBlur={handleBlur('password_confirmation')}
+                  placeholder={'Confirm your password'}
+                  inputMode={'text'}
+                  value={values.password_confirmation}
+                  error={errors.password_confirmation}
+                  withSuccesIcon={true}
+                  withVisibilityButton
+                  containerStyles={{ marginBottom: 0 }}
+                />
 
-              <View style={styles.sign_up_button_container}>
-                <Text
-                  style={styles.sign_up_button_aside_text}
-                >{`Don't have an account?`}</Text>
-                <TouchableOpacity>
-                  <Text style={styles.sigh_up_button_title}>Sign Up</Text>
+                <View style={styles.checkbox_container}>
+                  <CheckBox
+                    containerStyle={styles.checkbox}
+                    checkedColor="green"
+                    checked={checkboxStatus}
+                    onPress={() => setCheckboxStatus(!checkboxStatus)}
+                  />
+                  <Text style={styles.checkbox_label}>
+                    {`I agree to the Ezy Mart `}
+                    <Text style={styles.checkbox_hyperlink}>
+                      Terms of Service
+                    </Text>
+                    {` and \n `}
+                    <Text style={styles.checkbox_hyperlink}>
+                      Privacy Policy
+                    </Text>
+                  </Text>
+                </View>
+
+                <TouchableOpacity
+                  disabled={!checkboxStatus || !isValid}
+                  onPress={handleSubmit}
+                  style={styles.sign_up_button_container}>
+                  <Text style={styles.sign_up_button_text}>Sign Up</Text>
                 </TouchableOpacity>
+
+                <View style={styles.already_have_account_container}>
+                  <Text style={styles.sign_up_button_aside_text}>
+                    Already have an account yet?
+                  </Text>
+                  <TouchableOpacity onPress={goBack}>
+                    <Text style={styles.sigh_up_button_title}>Log in</Text>
+                  </TouchableOpacity>
+                </View>
               </View>
+            )}
+          </Formik>
 
-              <View style={styles.line_divider_container}>
-                <Text style={styles.line_divider_text}>OR</Text>
-              </View>
-
-              <TouchableOpacityButton
-                icon={<AppleIcon />}
-                text={"Continue with Apple"}
-              />
-
-              <TouchableOpacityButton
-                icon={
-                  <View style={styles.facebook_icon_container}>
-                    <FacebookIcon
-                      width={26}
-                      height={26}
-                      style={{ position: "absolute", bottom: 0, right: 0 }}
-                    />
-                  </View>
-                }
-                text={"Continue with Facebook"}
-              />
-
-              <TouchableOpacityButton
-                icon={<GoogleIcon width={26} height={22} />}
-                text={"Continue with Google"}
-              />
-            </View>
-          )}
-        </Formik>
-      </ScrollView>
-    </SafeAreaView>
+          <CustomModal
+            isVisible={isModalVisible}
+            close={goBackHandle}
+            text="You was succesfully registered!"
+            description="Once again you login successfully into MedSync app"
+            textClose="Login"
+          />
+        </View>
+      </KeyboardAwareScrollView>
+    </KeyboardDismissWrapper>
   );
 };
 

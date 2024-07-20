@@ -39,9 +39,6 @@ export const styles = StyleSheet.create({
   success_icon: {
     opacity: 1,
   },
-  visibility_button: {
-    padding: 10,
-  },
 });
 
 export default styles;

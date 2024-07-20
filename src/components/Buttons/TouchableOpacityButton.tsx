@@ -1,10 +1,10 @@
-import { Text, TouchableOpacity, TextStyle, ViewStyle } from "react-native";
-import React from "react";
+import { Text, TouchableOpacity, TextStyle, ViewStyle } from 'react-native';
+import React from 'react';
 
-import styles from "./styles";
+import styles from './styles';
 
 type TouchableOpacityProps = {
-  icon: React.JSX.Element;
+  icon?: React.JSX.Element;
   text: string;
   containerStyles?: ViewStyle;
   textStyles?: TextStyle;
@@ -18,8 +18,7 @@ const TouchableOpacityButton = ({
 }: TouchableOpacityProps) => {
   return (
     <TouchableOpacity
-      style={[styles.touchable_opacity_container, containerStyles]}
-    >
+      style={[styles.touchable_opacity_container, containerStyles]}>
       {icon}
       <Text style={[styles.touchable_opacity_text, textStyles]}>{text}</Text>
     </TouchableOpacity>

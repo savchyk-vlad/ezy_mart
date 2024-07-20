@@ -33,6 +33,7 @@ interface IInputProps {
   withVisibilityButton?: boolean;
   error: string | undefined;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
+  touched?: boolean;
 }
 
 const CustomFormInput = ({
@@ -48,6 +49,7 @@ const CustomFormInput = ({
   withVisibilityButton,
   error,
   autoCapitalize,
+  touched,
 }: IInputProps) => {
   const [passwordVisibility, setPasswordVisibility] = useState(false);
 
@@ -101,14 +103,12 @@ const CustomFormInput = ({
           autoCapitalize={autoCapitalize}
         />
 
-        {withSuccesIcon && !error && (
+        {withSuccesIcon && touched && value && !error && (
           <SuccessIcon style={styles.success_icon} />
         )}
 
         {withVisibilityButton && (
-          <TouchableOpacity
-            onPress={handleVisibilityContent}
-            style={styles.visibility_button}>
+          <TouchableOpacity onPress={handleVisibilityContent}>
             {!passwordVisibility ? <EyeSlashIcon /> : <EyeIcon />}
           </TouchableOpacity>
         )}

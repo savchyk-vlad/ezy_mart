@@ -4,19 +4,20 @@ import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view
 import { Formik } from 'formik';
 
 import {
-  AppleIcon,
-  FacebookIcon,
-  GoogleIcon,
-} from '~assets/images/icons/IconsSvg';
-import {
   CustomFormInput,
   KeyboardDismissWrapper,
   TouchableOpacityButton,
 } from '~components';
-import styles from './styles';
-import useSignIn from './hooks/useSignIn';
-import { PLATFORM } from '~constants';
+import { useSignIn } from './hooks/useSignIn';
 import { useValidation } from './hooks/useValidation';
+
+import {
+  AppleIcon,
+  FacebookIcon,
+  GoogleIcon,
+} from '~assets/images/icons/IconsSvg';
+import { PLATFORM } from '~constants';
+import styles from './styles';
 
 const initialValues = { email: '', password: '' };
 
@@ -46,6 +47,7 @@ const SignIn = () => {
               values,
               errors,
               isValid,
+              touched,
             }) => (
               <View style={styles.form_container}>
                 <CustomFormInput
@@ -54,10 +56,11 @@ const SignIn = () => {
                   handleBlur={handleBlur('email')}
                   placeholder={'Enter your email'}
                   inputMode={'email'}
-                  value={values}
-                  error={errors}
+                  value={values.email}
+                  error={errors.email}
                   withSuccesIcon={true}
                   autoCapitalize={'none'}
+                  touched={touched.email}
                 />
 
                 <CustomFormInput
@@ -66,9 +69,8 @@ const SignIn = () => {
                   handleBlur={handleBlur('password')}
                   placeholder={'Enter your password'}
                   inputMode={'text'}
-                  value={values}
-                  error={errors}
-                  withSuccesIcon={true}
+                  value={values.password}
+                  error={errors.password}
                   withVisibilityButton
                 />
 
