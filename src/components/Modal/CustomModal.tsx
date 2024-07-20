@@ -15,6 +15,8 @@ interface IProps {
   text?: string;
   textClose?: string;
   description?: string;
+  withIcon?: boolean;
+  icon?: JSX.Element | null;
 }
 
 const CustomModal = ({
@@ -23,6 +25,8 @@ const CustomModal = ({
   text,
   textClose,
   description,
+  withIcon,
+  icon: Icon,
 }: IProps) => {
   return (
     <Modal
@@ -30,6 +34,7 @@ const CustomModal = ({
       onBackdropPress={close}
       style={styles.optionsModalCenteredView}>
       <View style={styles.optionsModalWrapper}>
+        {withIcon && <View style={styles.icon_container}>{Icon}</View>}
         <Text style={styles.modal_text}>{text}</Text>
 
         <Text style={styles.modal_description}>{description}</Text>

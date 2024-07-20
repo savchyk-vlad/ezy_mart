@@ -18,7 +18,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 30,
   },
   sign_up_button_container: {
-    marginTop: 20,
+    marginTop: 40,
     width: '100%',
     backgroundColor: '#4C46B8',
     padding: 20,
@@ -31,8 +31,7 @@ export const styles = StyleSheet.create({
     fontSize: 20,
   },
   modal_text: {
-    padding: 30,
-    paddingTop: 50,
+    paddingBottom: 10,
     fontFamily: 'Inter_600SemiBold',
     fontSize: 30,
     textAlign: 'center',
@@ -42,6 +41,10 @@ export const styles = StyleSheet.create({
     fontSize: 16,
     textAlign: 'center',
     color: '#7B7D82',
+  },
+  icon_container: {
+    alignItems: 'center',
+    top: -50,
   },
 });
 

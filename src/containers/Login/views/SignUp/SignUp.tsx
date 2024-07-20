@@ -13,6 +13,7 @@ import { PLATFORM } from '~constants';
 import { useValidation } from './hooks/useValidation';
 import styles from './styles';
 import { useSignUp } from './hooks/useSignUp';
+import { BadgeCheckIcon } from '~assets/images/icons/IconsSvg';
 
 const initialValues = {
   userName: '',
@@ -157,9 +158,11 @@ const SignUp = () => {
           <CustomModal
             isVisible={isModalVisible}
             close={goBackHandle}
-            text="You was succesfully registered!"
-            description="Once again you login successfully into MedSync app"
+            text="Success!"
+            description="Your account has been successfully registered"
             textClose="Login"
+            withIcon
+            icon={<BadgeCheckIcon />}
           />
         </View>
       </KeyboardAwareScrollView>
