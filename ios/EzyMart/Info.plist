@@ -22,12 +22,15 @@
     <string>1.0.0</string>
     <key>CFBundleSignature</key>
     <string>????</string>
+    <key>GIDClientID</key>
+    <string>6520982167-ku37rnfdjpth8phfvpcv309uhu2v92mb.apps.googleusercontent.com</string>
     <key>CFBundleURLTypes</key>
     <array>
       <dict>
         <key>CFBundleURLSchemes</key>
         <array>
           <string>com.anonymous.EzyMart</string>
+          <string>com.googleusercontent.apps.6520982167-ku37rnfdjpth8phfvpcv309uhu2v92mb</string>
         </array>
       </dict>
     </array>

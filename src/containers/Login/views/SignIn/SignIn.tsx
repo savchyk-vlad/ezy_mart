@@ -18,12 +18,14 @@ import {
 } from '~assets/images/icons/IconsSvg';
 import { PLATFORM } from '~constants';
 import styles from './styles';
+import { useGoogleAuth } from '~hooks';
 
 const initialValues = { email: '', password: '' };
 
 const SignIn = () => {
   const { goToSignUp } = useSignIn();
   const { validationSchema } = useValidation();
+  const { signInWithGoogle } = useGoogleAuth();
 
   return (
     <KeyboardDismissWrapper>
@@ -120,6 +122,7 @@ const SignIn = () => {
                 />
 
                 <TouchableOpacityButton
+                  onPress={signInWithGoogle}
                   icon={<GoogleIcon width={26} height={22} />}
                   text={'Continue with Google'}
                 />
