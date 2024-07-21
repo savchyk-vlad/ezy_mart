@@ -1,11 +1,10 @@
 import { SCREENS } from "~constants";
 
 import { SignIn } from "../../Login";
-
 import { Onboarding } from "~containers/Onboarding";
 import { SignUp } from "~containers/Login/views/SignUp";
 
-export const AppScreens = [
+export const AUTH_SCREENS = [
   {
     name: SCREENS.ONBOARDING,
     component: Onboarding,

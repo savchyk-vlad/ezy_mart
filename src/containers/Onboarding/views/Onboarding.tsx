@@ -1,26 +1,25 @@
-import { FlatList, View, Animated } from "react-native";
-import React, { useEffect, useState } from "react";
+import { FlatList, View, Animated } from 'react-native';
+import React, { useEffect, useState } from 'react';
 
-import { OnboardingContainerView } from "~components";
-import { SCREENS, screenHeight, screenWidth } from "~constants";
-import { imagePathes } from "~assets/images/images";
-
+import { OnboardingContainerView } from '~components';
+import { SCREENS, HEIGHT, WIDTH } from '~constants';
+import { imagePathes } from '~assets/images/images';
 
 const MOCK_ONBOARDING_SCREENS = [
   {
     name: SCREENS.ONBOARDING,
-    headerText: "Discover Endless Shopping Possibilities",
+    headerText: 'Discover Endless Shopping Possibilities',
     imagePath: imagePathes.onboardingBg1ImagePath,
   },
   {
     name: SCREENS.ONBOARDING,
-    headerText: "Effortless Shopping Experience",
+    headerText: 'Effortless Shopping Experience',
     imagePath: imagePathes.onboardingBg2ImagePath,
   },
   {
     name: SCREENS.ONBOARDING,
-    headerText: "Stay Ahead of the Latest Trends",
-    paragraph: "Welcome Aboard EziBuy: Navigating Your Health Journey",
+    headerText: 'Stay Ahead of the Latest Trends',
+    paragraph: 'Welcome Aboard EziBuy: Navigating Your Health Journey',
     imagePath: imagePathes.onboardingBg3ImagePath,
   },
 ];
@@ -39,13 +38,13 @@ const Onboarding = () => {
     [{ nativeEvent: { contentOffset: { x: scrollX } } }],
     {
       useNativeDriver: false,
-    }
+    },
   );
 
   const nextScreenName = (index: number) => {
     return index < MOCK_ONBOARDING_SCREENS.length - 1
       ? MOCK_ONBOARDING_SCREENS[index]?.name
-      : "";
+      : '';
   };
 
   useEffect(() => {
@@ -53,7 +52,7 @@ const Onboarding = () => {
   }, [scrollIndex]);
 
   return (
-    <View style={{ height: screenHeight }}>
+    <View style={{ height: HEIGHT }}>
       <FlatList
         ref={flatListRef}
         data={MOCK_ONBOARDING_SCREENS}
@@ -68,9 +67,9 @@ const Onboarding = () => {
           />
         )}
         showsVerticalScrollIndicator={false}
-        snapToAlignment={"start"}
-        decelerationRate={"fast"}
-        snapToInterval={screenWidth}
+        snapToAlignment={'start'}
+        decelerationRate={'fast'}
+        snapToInterval={WIDTH}
         horizontal
         scrollEnabled={false}
       />

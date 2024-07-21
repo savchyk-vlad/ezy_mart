@@ -1,11 +1,11 @@
 import { Navigation } from './src/containers/Core'
-import { AsyncStorageContextProvider } from './src/providers'
-
+import AuthenticationProvider from './src/providers/auth/AuthenticationProvider'
+ 
 const App = () => {
   return (
-    <AsyncStorageContextProvider>
+    <AuthenticationProvider>
       <Navigation />
-    </AsyncStorageContextProvider>
+    </AuthenticationProvider>
 
   );
 };

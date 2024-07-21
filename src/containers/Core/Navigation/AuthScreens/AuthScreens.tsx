@@ -1,30 +1,24 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { ActivityIndicator, SafeAreaView } from 'react-native';
 
-import { AppScreens } from '../screens';
+import { AUTH_SCREENS } from '../screens';
 import { styleOptions } from './styles';
 import { SCREENS } from '~constants';
-import { useAsyncStorageContext } from '~providers/asyncStorage/AsyncStorageProvider';
+import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 
 const Stack = createStackNavigator();
 
 const AuthScreens = () => {
-  const { userData, isAsyncStorageLoading } = useAsyncStorageContext();
+  const { state: authState } = useAuthentication();
 
-  const onboardingPassStatus = userData.onboardingPassStatus;
-
-  if (isAsyncStorageLoading) {
-    return (
-      <SafeAreaView>
-        <ActivityIndicator />
-      </SafeAreaView>
-    );
-  }
+  console.log('authState', authState);
 
   return (
-    <Stack.Navigator initialRouteName={onboardingPassStatus && SCREENS.SIGN_IN}>
-      {AppScreens.map(screen => (
+    <Stack.Navigator
+      initialRouteName={
+        authState.isOnboardingCompleted ? SCREENS.SIGN_IN : SCREENS.ONBOARDING
+      }>
+      {AUTH_SCREENS.map(screen => (
         <Stack.Screen
           key={screen.name}
           name={screen.name}

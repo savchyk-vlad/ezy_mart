@@ -1,21 +1,52 @@
-import React from "react";
-import { RootAppScreens } from "./RootAppScreens";
-import { NavigationContainer } from "@react-navigation/native";
+import React, { useEffect, useMemo, useState } from 'react';
+import { NavigationContainer } from '@react-navigation/native';
 
-import { useCustomFonts } from "~hooks";
-import { ActivityIndicator } from "react-native";
+import { AuthScreens } from './AuthScreens';
+import { AppScreens } from './AppScreens';
+import { useAuthentication } from '~providers/auth/AuthenticationProvider';
+import { PLATFORM } from '~constants';
+import { SplashScreen } from '../SplashScreen';
 
 const Navigation = () => {
-  const { fontsLoaded } = useCustomFonts();
+  const { state: authState } = useAuthentication();
+  const [splashScreenVisible, setSplashScreenVisible] = useState(true);
 
-  if (!fontsLoaded) {
-    return <ActivityIndicator />;
-  } else
-    return (
-      <NavigationContainer>
-        <RootAppScreens />
-      </NavigationContainer>
-    );
+  const AuthStackApp = () => <AuthScreens />;
+
+  const RootStackApp = () => {
+    return <AppScreens />;
+  };
+
+
+
+  const ApplicationScreens = useMemo(() => {
+    if (authState.isAuthenticated) {
+      return RootStackApp();
+    } else {
+      return AuthStackApp();
+    }
+  }, [authState.isAuthenticated]);
+
+  useEffect(() => {
+    if (!authState.isLoading) {
+      if (PLATFORM.isIos) {
+        setTimeout(() => {
+          setSplashScreenVisible(false);
+        }, 1000);
+        return;
+      }
+    }
+  }, [authState.isLoading]);
+
+  return (
+    <>
+      {splashScreenVisible ? (
+        <SplashScreen />
+      ) : (
+        <NavigationContainer>{ApplicationScreens}</NavigationContainer>
+      )}
+    </>
+  );
 };
 
 export default Navigation;

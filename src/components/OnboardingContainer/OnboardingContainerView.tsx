@@ -5,16 +5,16 @@ import {
   Text,
   TouchableOpacity,
   View,
-} from "react-native";
-import { BlurView } from "expo-blur";
-import { ExpandingDot } from "react-native-animated-pagination-dots";
+} from 'react-native';
+import { BlurView } from 'expo-blur';
+import { ExpandingDot } from 'react-native-animated-pagination-dots';
 
-import { RightArrowIcon } from "~assets/images/icons/IconsSvg";
-import useOnboarding from "~containers/Onboarding/hooks/useOnboarding";;
-import { ThemeColors } from "~assets";
-import { SCREENS } from "~constants";
-import styles from "./styles";
-import { useAsyncStorageContext } from "~providers/AsyncStorageContext";
+import { RightArrowIcon } from '~assets/images/icons/IconsSvg';
+import useOnboarding from '~containers/Onboarding/hooks/useOnboarding';
+import { ThemeColors } from '~assets';
+import { SCREENS } from '~constants';
+import styles from './styles';
+import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 
 type IScreen = {
   imagePath: ImageSourcePropType | undefined;
@@ -39,13 +39,11 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
     handleScroll,
   } = props;
   const { goToNextOnboardingScreen, goToLoginScreen } = useOnboarding();
-  const { userData, setAsyncStorage } = useAsyncStorageContext();
+  const { state: authState, markOnboardingCompleted } = useAuthentication();
 
   const getStartButtonHandle = () => {
-    const updatedUserData = { ...userData, onboardingPassStatus: true };
+    markOnboardingCompleted();
     goToLoginScreen(SCREENS.SIGN_IN);
-
-    setAsyncStorage("userData", updatedUserData);
   };
 
   return (
@@ -55,8 +53,7 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
       )}
 
       <TouchableOpacity
-        onPress={() => goToNextOnboardingScreen(SCREENS.SIGN_IN)}
-      >
+        onPress={() => goToNextOnboardingScreen(SCREENS.SIGN_IN)}>
         <Text style={[styles.skipButton, !skipButton && { opacity: 0 }]}>
           Skip
         </Text>
@@ -65,8 +62,7 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
       <BlurView
         intensity={70}
         tint="systemUltraThinMaterialDark"
-        style={styles.bottomPopUp}
-      >
+        style={styles.bottomPopUp}>
         <Text style={styles.popUpText}>{screen.headerText}</Text>
 
         {nextScreenName && (
@@ -84,8 +80,7 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
 
             <TouchableOpacity
               onPress={handleScroll}
-              style={styles.popUpNextButton}
-            >
+              style={styles.popUpNextButton}>
               <RightArrowIcon />
             </TouchableOpacity>
           </View>
@@ -96,8 +91,7 @@ const OnboardingConatinerView = (props: IOnboardingProps) => {
             <Text style={styles.popUpParagraph}>{screen.paragraph}</Text>
             <TouchableOpacity
               style={styles.popUpButton}
-              onPress={getStartButtonHandle}
-            >
+              onPress={getStartButtonHandle}>
               <Text style={styles.popUpButtonText}>Get Started</Text>
             </TouchableOpacity>
           </View>
