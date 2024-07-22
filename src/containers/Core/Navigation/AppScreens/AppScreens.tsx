@@ -1,14 +1,30 @@
 import React from 'react';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
-import { styleOptions } from './styles';
-import { SCREENS } from '~constants';
-import { ActivityIndicator, SafeAreaView, View } from 'react-native';
+import { APP_ROOT_SCREENS } from '../screens';
+import { TabNavigatorHeader } from '~components';
+import { bottomNavigatorOptions } from './navigationOptions';
 
-const Stack = createStackNavigator();
+const BottomNavigatorStack = createBottomTabNavigator();
 
 const AppScreens = () => {
-  return <View></View>;
+  return (
+    <BottomNavigatorStack.Navigator backBehavior="history">
+      {APP_ROOT_SCREENS.map(screen => (
+        <BottomNavigatorStack.Screen
+          key={screen.name}
+          name={screen.title}
+          component={screen.component}
+          options={{
+            tabBarIcon: ({ focused }) => screen.icon({ focused }),
+            header: () => (
+              <TabNavigatorHeader title={screen.title} screen={screen.name} />
+            ),
+            ...bottomNavigatorOptions,
+          }}
+        />
+      ))}
+    </BottomNavigatorStack.Navigator>
+  );
 };
-
 export default AppScreens;
