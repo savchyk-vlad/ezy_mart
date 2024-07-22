@@ -1,6 +1,10 @@
 import * as React from 'react';
 import { View } from 'react-native';
-import Svg, { SvgProps, Path } from 'react-native-svg';
+import Svg, { SvgProps, Path, Circle } from 'react-native-svg';
+type IconType = {
+  color?: string;
+  focused?: boolean;
+};
 
 const RightArrowIcon = (props: SvgProps) => (
   <Svg width={24} height={24} fill="none" {...props}>
@@ -156,6 +160,192 @@ const BadgeCheckIcon = (props: SvgProps) => (
   </View>
 );
 
+const TabChatIcon = ({ focused }: IconType) => (
+  <Svg
+    width="25"
+    height="24"
+    viewBox="0 0 25 24"
+    fill={focused ? '#4C46B8' : 'none'}>
+    <Path
+      d="M18.9698 16.83L19.3598 19.99C19.4598 20.82 18.5698 21.4 17.8598 20.97L13.6698 18.48C13.2098 18.48 12.7599 18.45 12.3199 18.39C13.0599 17.52 13.4998 16.42 13.4998 15.23C13.4998 12.39 11.0398 10.09 7.99985 10.09C6.83985 10.09 5.76985 10.42 4.87985 11C4.84985 10.75 4.83984 10.5 4.83984 10.24C4.83984 5.68999 8.78985 2 13.6698 2C18.5498 2 22.4998 5.68999 22.4998 10.24C22.4998 12.94 21.1098 15.33 18.9698 16.83Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <Path
+      d="M13.5 15.23C13.5 16.42 13.06 17.5201 12.32 18.3901C11.33 19.5901 9.76 20.36 8 20.36L5.39 21.91C4.95 22.18 4.39 21.81 4.45 21.3L4.7 19.3301C3.36 18.4001 2.5 16.91 2.5 15.23C2.5 13.47 3.44 11.9201 4.88 11.0001C5.77 10.4201 6.84 10.0901 8 10.0901C11.04 10.0901 13.5 12.39 13.5 15.23Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </Svg>
+);
+
+const TabFavoritesIcon = ({ focused }: IconType) => (
+  <Svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill={focused ? '#4C46B8' : 'none'}>
+    <Path
+      d="M19.86 8.09009C19.86 8.51009 19.83 8.92009 19.78 9.31009C19.32 9.11009 18.82 9.00009 18.29 9.00009C17.07 9.00009 15.99 9.59008 15.32 10.4901C14.64 9.59008 13.56 9.00009 12.34 9.00009C10.29 9.00009 8.63 10.6701 8.63 12.7401C8.63 15.4201 10.05 17.4701 11.63 18.8601C11.58 18.8901 11.53 18.9001 11.48 18.9201C11.18 19.0301 10.68 19.0301 10.38 18.9201C7.79 18.0301 2 14.3501 2 8.09009C2 5.33009 4.21999 3.1001 6.95999 3.1001C8.58999 3.1001 10.03 3.88009 10.93 5.09009C11.84 3.88009 13.28 3.1001 14.9 3.1001C17.64 3.1001 19.86 5.33009 19.86 8.09009Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <Path
+      d="M21.9999 12.74C21.9999 17.42 17.6699 20.18 15.7299 20.84C15.4999 20.92 15.1299 20.92 14.8999 20.84C14.0699 20.56 12.7999 19.89 11.6299 18.86C10.0499 17.47 8.62988 15.42 8.62988 12.74C8.62988 10.67 10.2899 9 12.3399 9C13.5599 9 14.6399 9.58999 15.3199 10.49C15.9899 9.58999 17.0699 9 18.2899 9C18.8199 9 19.3199 9.11 19.7799 9.31C21.0899 9.89 21.9999 11.2 21.9999 12.74Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </Svg>
+);
+
+const TabTrendingIcon = ({ focused }: IconType) => (
+  <Svg
+    width="23"
+    height="22"
+    viewBox="0 0 23 22"
+    fill={focused ? '#4C46B8' : 'none'}>
+    <Path
+      d="M13.2299 2.50989L14.9899 6.02989C15.2299 6.51989 15.8699 6.98989 16.4099 7.07989L19.5999 7.60989C21.6399 7.94989 22.1199 9.42989 20.6499 10.8899L18.1699 13.3699C17.7499 13.7899 17.5199 14.5999 17.6499 15.1799L18.3599 18.2499C18.9199 20.6799 17.6299 21.6199 15.4799 20.3499L12.4899 18.5799C11.9499 18.2599 11.0599 18.2599 10.5099 18.5799L7.51991 20.3499C5.37991 21.6199 4.07991 20.6699 4.63991 18.2499L5.34991 15.1799C5.47991 14.5999 5.24991 13.7899 4.82991 13.3699L2.34991 10.8899C0.889909 9.42989 1.35991 7.94989 3.39991 7.60989L6.58991 7.07989C7.11991 6.98989 7.75991 6.51989 7.99991 6.02989L9.75991 2.50989C10.7199 0.599893 12.2799 0.599893 13.2299 2.50989Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </Svg>
+);
+
+const TabHomeIcon = ({ focused }: IconType) => (
+  <Svg
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill={focused ? '#4C46B8' : 'none'}>
+    <Path d="M12 18V15V18Z" fill="#616161" />
+    <Path
+      d="M12 18V15"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <Path
+      d="M10.0698 2.82009L3.13978 8.37009C2.35978 8.99009 1.85978 10.3001 2.02978 11.2801L3.35978 19.2401C3.59978 20.6601 4.95978 21.8101 6.39978 21.8101H17.5998C19.0298 21.8101 20.3998 20.6501 20.6398 19.2401L21.9698 11.2801C22.1298 10.3001 21.6298 8.99009 20.8598 8.37009L13.9298 2.83009C12.8598 1.97009 11.1298 1.97009 10.0698 2.82009Z"
+      stroke={focused ? '#4C46B8' : '#616161'}
+      stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </Svg>
+);
+
+const TabProfileIcon = ({ focused }: IconType) => {
+  return (
+    <Svg
+      width="25"
+      height="24"
+      viewBox="0 0 25 24"
+      fill={focused ? '#4C46B8' : 'none'}>
+      <Path
+        d="M12.6601 10.87C12.5601 10.86 12.4401 10.86 12.3301 10.87C9.95006 10.79 8.06006 8.84 8.06006 6.44C8.06006 3.99 10.0401 2 12.5001 2C14.9501 2 16.9401 3.99 16.9401 6.44C16.9301 8.84 15.0401 10.79 12.6601 10.87Z"
+        stroke={focused ? '#4C46B8' : '#616161'}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M7.66021 14.56C5.24021 16.18 5.24021 18.82 7.66021 20.43C10.4102 22.27 14.9202 22.27 17.6702 20.43C20.0902 18.81 20.0902 16.17 17.6702 14.56C14.9302 12.73 10.4202 12.73 7.66021 14.56Z"
+        stroke={focused ? '#4C46B8' : '#616161'}
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+    </Svg>
+  );
+};
+
+const BurgerIcon = (props: SvgProps) => {
+  return (
+    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M3 7H21"
+        stroke="#23262F"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <Path
+        d="M3 12H21"
+        stroke="#23262F"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+      <Path
+        d="M3 17H21"
+        stroke="#23262F"
+        stroke-width="1.5"
+        stroke-linecap="round"
+      />
+    </Svg>
+  );
+};
+
+const BellIcon = (props: SvgProps) => {
+  return (
+    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M12.0002 21.75C11.0122 21.75 10.1242 21.237 9.6222 20.378C9.4142 20.02 9.5342 19.561 9.8922 19.352C10.2482 19.144 10.7082 19.264 10.9182 19.622C11.3772 20.409 12.6232 20.409 13.0822 19.622C13.2912 19.264 13.7512 19.144 14.1082 19.352C14.4662 19.56 14.5872 20.02 14.3782 20.378C13.8762 21.237 12.9882 21.75 12.0002 21.75ZM20.6752 18.325C20.8002 18.065 20.7652 17.757 20.5862 17.532C20.5672 17.509 18.7452 15.189 18.7452 12.5V8.995C18.7452 5.276 15.7192 2.25 12.0002 2.25C8.2812 2.25 5.2552 5.276 5.2552 8.995V12.5C5.2552 15.189 3.4332 17.509 3.4142 17.532C3.2352 17.757 3.2002 18.066 3.3252 18.325C3.4502 18.584 3.7122 18.75 4.0002 18.75H20.0002C20.2882 18.75 20.5502 18.584 20.6752 18.325ZM6.7552 12.5V8.995C6.7552 6.103 9.1082 3.75 12.0002 3.75C14.8922 3.75 17.2452 6.103 17.2452 8.995V12.5C17.2452 14.436 17.9952 16.158 18.6132 17.25H5.3862C6.0052 16.158 6.7552 14.436 6.7552 12.5Z"
+        fill="#23262F"
+      />
+      <Circle cx="22" cy="2" r="2" fill="#E53935" />
+    </Svg>
+  );
+};
+
+const CartIcon = (props: SvgProps) => {
+  return (
+    <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M7.5 7.67001V6.70001C7.5 4.45001 9.31 2.24001 11.56 2.03001C14.24 1.77001 16.5 3.88001 16.5 6.51001V7.89001"
+        stroke="#23262F"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M8.99983 22H14.9998C19.0198 22 19.7398 20.39 19.9498 18.43L20.6998 12.43C20.9698 9.99 20.2698 8 15.9998 8H7.99983C3.72983 8 3.02983 9.99 3.29983 12.43L4.04983 18.43C4.25983 20.39 4.97983 22 8.99983 22Z"
+        stroke="#23262F"
+        stroke-width="1.5"
+        stroke-miterlimit="10"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M15.4955 12H15.5045"
+        stroke="#23262F"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Path
+        d="M8.49451 12H8.50349"
+        stroke="#23262F"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      />
+      <Circle cx="22" cy="2" r="2" fill="#E53935" />
+    </Svg>
+  );
+};
+
 export {
   EnvelopeIcon,
   RightArrowIcon,
@@ -169,4 +359,12 @@ export {
   BackArrowIcon,
   UserIcon,
   BadgeCheckIcon,
+  TabChatIcon,
+  TabFavoritesIcon,
+  TabTrendingIcon,
+  TabHomeIcon,
+  TabProfileIcon,
+  BurgerIcon,
+  BellIcon,
+  CartIcon,
 };

@@ -1,8 +1,8 @@
-import { ThemeColors, ThemeLayouts } from "~assets/theme";
+import { JSX } from 'react';
 
-import { JSX } from "react";
-import { useScreenName } from "~hooks";
-import { BackArrowIcon } from "~assets/images/icons/IconsSvg";
+import { useScreenName } from '~hooks';
+import { ThemeColors, ThemeLayouts } from '~assets/theme';
+import { BackArrowIcon } from '~assets/images/icons/IconsSvg';
 
 type IScreen = {
   name: string;
@@ -11,37 +11,37 @@ type IScreen = {
 
 export const styleOptions = (screen: IScreen) => {
   const { isSignInScreen, isSignUpScreen, isOnboardingScreen } = useScreenName(
-    screen.name
+    screen.name,
   );
 
   const signInScreenOptions = isSignInScreen && {
     headerLeft: () => null,
     gestureEnabled: false,
     headerStyle: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: ThemeColors.white,
     },
     headerTitleStyle: {
-      fontFamily: "PlusJakartaSans_600SemiBold",
+      fontFamily: 'PlusJakartaSans_600SemiBold',
     },
-    headerTitle: "Login",
+    headerTitle: 'Login',
     headerShadowVisible: false,
   };
 
   const signUpScreenOptions = isSignUpScreen && {
     headerStyle: {
-      backgroundColor: "#FFFFFF",
+      backgroundColor: ThemeColors.white,
     },
     headerBack: () => <BackArrowIcon />,
     headerTitleStyle: {
-      fontFamily: "PlusJakartaSans_600SemiBold",
+      fontFamily: 'PlusJakartaSans_600SemiBold',
     },
-    headerTitle: "Sign Up",
+    headerTitle: 'Sign Up',
     headerShadowVisible: false,
   };
 
   const onboardingScreenOptions = isOnboardingScreen && {
     headerTransparent: true,
-    headerTitle: "",
+    headerTitle: '',
     headerLeft: () => null,
     gestureEnabled: false,
   };

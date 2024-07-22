@@ -1,17 +1,15 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
+import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 import { AUTH_SCREENS } from '../screens';
 import { styleOptions } from './styles';
 import { SCREENS } from '~constants';
-import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 
 const Stack = createStackNavigator();
 
 const AuthScreens = () => {
   const { state: authState } = useAuthentication();
-
-  console.log('authState', authState);
 
   return (
     <Stack.Navigator

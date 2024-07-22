@@ -1,2 +1,1 @@
-export { SignIn } from "./views"
-
+export { SignIn } from './views';
