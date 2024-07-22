@@ -18,7 +18,7 @@ const Navigation = () => {
   };
 
   const ApplicationScreens = useMemo(() => {
-    if (true) {
+    if (authState.isAuthenticated) {
       return RootStackApp();
     } else {
       return AuthStackApp();
