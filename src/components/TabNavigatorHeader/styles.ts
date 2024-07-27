@@ -1,11 +1,16 @@
 import { StyleSheet } from 'react-native';
 
+import { ThemeColors } from '~assets';
 import { WIDTH } from '~constants';
 
 export const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'white',
+    backgroundColor: ThemeColors.white,
     width: WIDTH,
+    shadowColor: 'gray',
+    shadowOffset: { width: 0, height: 1 },
+    shadowOpacity: 0.07,
+    shadowRadius: 10,
   },
   right_icons_container: {
     display: 'flex',
