@@ -1,15 +1,18 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 
+import { useCustomFonts } from '~hooks';
+import { useAuthentication } from '~providers/auth/AuthenticationProvider';
+
 import { AuthScreens } from './AuthScreens';
 import { AppScreens } from './AppScreens';
-import { useAuthentication } from '~providers/auth/AuthenticationProvider';
-import { PLATFORM } from '~constants';
 import { SplashScreen } from '../SplashScreen';
+import { PLATFORM } from '~constants';
 
 const Navigation = () => {
   const { state: authState } = useAuthentication();
   const [splashScreenVisible, setSplashScreenVisible] = useState(true);
+  const { fontsLoaded } = useCustomFonts();
 
   const AuthStackApp = () => <AuthScreens />;
 
@@ -38,7 +41,7 @@ const Navigation = () => {
 
   return (
     <>
-      {splashScreenVisible ? (
+      {!fontsLoaded || splashScreenVisible ? (
         <SplashScreen />
       ) : (
         <NavigationContainer>{ApplicationScreens}</NavigationContainer>

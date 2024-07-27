@@ -1,5 +1,5 @@
+import React, { useEffect, useRef, useState } from 'react';
 import { FlatList, View, Animated } from 'react-native';
-import React, { useEffect, useState } from 'react';
 
 import { OnboardingContainerView } from '~components';
 import { SCREENS, HEIGHT, WIDTH } from '~constants';
@@ -27,8 +27,8 @@ const MOCK_ONBOARDING_SCREENS = [
 const Onboarding = () => {
   const [scrollIndex, setScrollIndex] = useState(0);
 
-  const scrollX = React.useRef(new Animated.Value(0)).current;
-  const flatListRef = React.useRef<FlatList>(null);
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const flatListRef = useRef<FlatList>(null);
 
   const handleScroll = () => {
     setScrollIndex(scrollIndex + 1);
@@ -71,7 +71,7 @@ const Onboarding = () => {
         decelerationRate={'fast'}
         snapToInterval={WIDTH}
         horizontal
-        scrollEnabled={false}
+        scrollEnabled={true}
       />
     </View>
   );

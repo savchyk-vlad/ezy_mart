@@ -4,3 +4,4 @@ export { CustomFormInput } from './Inputs';
 export { TouchableOpacityButton } from './Buttons';
 export { KeyboardDismissWrapper } from './KeyboardDismissWrapper';
 export { TabNavigatorHeader } from './TabNavigatorHeader';
+export { BannerCarousel } from './BannerCarousel';
