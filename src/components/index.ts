@@ -5,3 +5,5 @@ export { TouchableOpacityButton } from './Buttons';
 export { KeyboardDismissWrapper } from './KeyboardDismissWrapper';
 export { TabNavigatorHeader } from './TabNavigatorHeader';
 export { BannerCarousel } from './BannerCarousel';
+export { SearchBar } from './SearchBar';
+export { ScreenWrapper } from './ScreenWrapper';

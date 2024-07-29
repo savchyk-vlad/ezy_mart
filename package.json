@@ -4,12 +4,13 @@
   "main": "expo/AppEntry.js",
   "scripts": {
     "start": "expo start",
-    "android": "expo run:android",
+    "android": "npx expo run:android",
     "ios": "npx expo run:ios",
     "web": "expo start --web",
     "podInstall": " cd ios && pod install && cd .. && npm run ios"
   },
   "dependencies": {
+    "@expo-google-fonts/be-vietnam-pro": "^0.2.3",
     "@expo-google-fonts/inter": "^0.2.3",
     "@expo-google-fonts/plus-jakarta-sans": "^0.2.3",
     "@expo-google-fonts/poppins": "^0.2.3",

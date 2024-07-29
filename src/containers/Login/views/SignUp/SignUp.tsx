@@ -9,11 +9,11 @@ import {
   CustomModal,
   KeyboardDismissWrapper,
 } from '~components';
-import { PLATFORM } from '~constants';
+import { INPUTS, PLATFORM } from '~constants';
 import { useValidation } from './hooks/useValidation';
-import styles from './styles';
 import { useSignUp } from './hooks/useSignUp';
 import { BadgeCheckIcon } from '~assets/images/icons/IconsSvg';
+import styles from './styles';
 
 const initialValues = {
   userName: '',
@@ -70,7 +70,7 @@ const SignUp = () => {
             }) => (
               <View style={styles.form_container}>
                 <CustomFormInput
-                  typeInput={'USER_NAME'}
+                  typeInput={INPUTS.USER_NAME}
                   handleChange={handleChange('userName')}
                   handleBlur={handleBlur('userName')}
                   placeholder={'Enter your name'}
@@ -81,7 +81,7 @@ const SignUp = () => {
                 />
 
                 <CustomFormInput
-                  typeInput={'EMAIL'}
+                  typeInput={INPUTS.EMAIL}
                   handleChange={handleChange('email')}
                   handleBlur={handleBlur('email')}
                   placeholder={'Enter your email'}
@@ -93,7 +93,7 @@ const SignUp = () => {
                 />
 
                 <CustomFormInput
-                  typeInput={'PASSWORD'}
+                  typeInput={INPUTS.PASSWORD}
                   handleChange={handleChange('password')}
                   handleBlur={handleBlur('password')}
                   placeholder={'Enter your password'}
@@ -105,7 +105,7 @@ const SignUp = () => {
                 />
 
                 <CustomFormInput
-                  typeInput={'PASSWORD'}
+                  typeInput={INPUTS.PASSWORD}
                   handleChange={handleChange('password_confirmation')}
                   handleBlur={handleBlur('password_confirmation')}
                   placeholder={'Confirm your password'}

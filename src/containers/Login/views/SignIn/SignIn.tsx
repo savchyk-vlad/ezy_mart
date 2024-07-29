@@ -17,7 +17,7 @@ import {
   FacebookIcon,
   GoogleIcon,
 } from '~assets/images/icons/IconsSvg';
-import { PLATFORM } from '~constants';
+import { INPUTS, PLATFORM } from '~constants';
 import styles from './styles';
 
 const initialValues = { email: '', password: '' };
@@ -53,7 +53,7 @@ const SignIn = () => {
             }) => (
               <View style={styles.form_container}>
                 <CustomFormInput
-                  typeInput={'EMAIL'}
+                  typeInput={INPUTS.EMAIL}
                   handleChange={handleChange('email')}
                   handleBlur={handleBlur('email')}
                   placeholder={'Enter your email'}
@@ -66,7 +66,7 @@ const SignIn = () => {
                 />
 
                 <CustomFormInput
-                  typeInput={'PASSWORD'}
+                  typeInput={INPUTS.PASSWORD}
                   handleChange={handleChange('password')}
                   handleBlur={handleBlur('password')}
                   placeholder={'Enter your password'}
