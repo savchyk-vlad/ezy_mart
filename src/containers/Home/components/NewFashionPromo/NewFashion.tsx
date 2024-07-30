@@ -24,7 +24,12 @@ const NewFashion = () => {
           contentContainerStyle={styles.flatList_container}
           showsHorizontalScrollIndicator={false}
           data={FASHION_PRODUCTS}
-          renderItem={({ item }) => <Card product={item} />}
+          renderItem={({ index, item }) => (
+            <Card
+              product={item}
+              isLastProduct={index === FASHION_PRODUCTS.length - 1}
+            />
+          )}
           keyExtractor={item => item.image as string}
         />
       </View>

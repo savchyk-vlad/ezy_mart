@@ -77,6 +77,9 @@ export const styles = StyleSheet.create({
     borderBottomColor: '#F76834',
     borderBottomWidth: 1,
   },
+  last_card: {
+    paddingRight: 20,
+  },
 });
 
 export default styles;
