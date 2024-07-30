@@ -8,6 +8,7 @@ import {
   NativeSyntheticEvent,
   TextInputFocusEventData,
   Text,
+  TextStyle,
 } from 'react-native';
 
 import {
@@ -15,23 +16,25 @@ import {
   EyeIcon,
   EyeSlashIcon,
   LockIcon,
+  MagnifyingGlassIcon,
   SuccessIcon,
   UserIcon,
 } from '~assets/images/icons/IconsSvg';
+import { INPUTS } from '~constants';
 import styles from './styles';
 
 interface IInputProps {
   typeInput: string;
-  handleChange: (e: string) => void;
-  handleBlur: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
+  handleChange?: (e: string) => void;
+  handleBlur?: (e: NativeSyntheticEvent<TextInputFocusEventData>) => void;
   placeholder: string;
   inputMode: InputModeOptions;
-  inputStyles?: ViewStyle;
+  inputStyles?: TextStyle;
   containerStyles?: ViewStyle;
   value: string | undefined;
   withSuccesIcon?: boolean;
   withVisibilityButton?: boolean;
-  error: string | undefined;
+  error?: string | undefined;
   autoCapitalize?: 'none' | 'sentences' | 'words' | 'characters' | undefined;
   touched?: boolean;
 }
@@ -56,9 +59,10 @@ const CustomFormInput = ({
   const handleVisibilityContent = () =>
     setPasswordVisibility(!passwordVisibility);
 
-  const isTypeEmail = typeInput === 'EMAIL';
-  const isTypePassword = typeInput === 'PASSWORD';
-  const isTypeUserName = typeInput === 'USER_NAME';
+  const isTypeEmail = typeInput === INPUTS.EMAIL;
+  const isTypePassword = typeInput === INPUTS.PASSWORD;
+  const isTypeUserName = typeInput === INPUTS.USER_NAME;
+  const isTypeSearch = typeInput === INPUTS.SEARCH;
 
   const ICON_COLOR = () => {
     if (value?.length && error) {
@@ -90,6 +94,7 @@ const CustomFormInput = ({
           {isTypeEmail && <EnvelopeIcon fill={ICON_COLOR()} />}
           {isTypeUserName && <UserIcon fill={ICON_COLOR()} />}
           {isTypePassword && <LockIcon fill={ICON_COLOR()} />}
+          {isTypeSearch && <MagnifyingGlassIcon />}
         </View>
 
         <TextInput

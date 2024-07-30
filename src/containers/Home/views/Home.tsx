@@ -1,7 +1,8 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
 
-import { NewOffers } from '../components/NewOffersPromo';
+import { SearchBar } from '~components';
+import { NewFashion, NewOffers } from '../components';
 import styles from './styles';
 
 const Home = () => {
@@ -9,7 +10,9 @@ const Home = () => {
     <ScrollView
       style={styles.home_view_scrollView}
       contentContainerStyle={styles.home_view_scrollView_container}>
+      <SearchBar />
       <NewOffers />
+      <NewFashion />
     </ScrollView>
   );
 };

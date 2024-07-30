@@ -18,10 +18,10 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     flexDirection: 'row',
     alignItems: 'center',
-    paddingRight: 30,
+    paddingRight: 40,
   },
   input_icon_container: {
-    paddingRight: 10,
+    paddingRight: 20,
   },
   input: {
     width: '100%',

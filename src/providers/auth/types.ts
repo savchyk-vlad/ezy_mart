@@ -11,4 +11,5 @@ export interface IAuthContext {
   logout: () => void;
   markOnboardingCompleted: () => void;
   loginFromGoogle: () => void;
+  loginFromFacebook: () => void;
 }
