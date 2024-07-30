@@ -25,7 +25,7 @@ const initialValues = { email: '', password: '' };
 const SignIn = () => {
   const { goToSignUp } = useSignIn();
   const { validationSchema } = useValidation();
-  const { loginFromGoogle } = useAuthentication();
+  const { loginFromGoogle, loginFromFacebook } = useAuthentication();
 
   return (
     <KeyboardDismissWrapper>
@@ -109,6 +109,7 @@ const SignIn = () => {
                 />
 
                 <TouchableOpacityButton
+                  onPress={loginFromFacebook}
                   icon={
                     <View style={styles.facebook_icon_container}>
                       <FacebookIcon

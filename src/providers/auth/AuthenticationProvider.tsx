@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { SCREENS, STORAGE_KEYS } from '~constants';
 import { IAuthContext, IState } from './types';
 import AsyncStorageService from '~services/AsyncStorageService';
-import { useGoogleAuth } from '~hooks';
+import { useFacebookAuth, useGoogleAuth } from '~hooks';
 import { getItemFromAsyncStorage } from '~utils';
 
 const initialState: IState = {
@@ -19,11 +19,13 @@ const AuthenticationContext = React.createContext<IAuthContext>({
   logout: () => null,
   markOnboardingCompleted: () => null,
   loginFromGoogle: () => null,
+  loginFromFacebook: () => null,
 });
 
 const AuthenticationProvider = ({ ...props }) => {
   const [state, setState] = useState(initialState);
   const { signInWithGoogle } = useGoogleAuth();
+  const { signInWithFacebook } = useFacebookAuth();
 
   useEffect(() => {
     const getAuthState = async () => {
@@ -93,6 +95,22 @@ const AuthenticationProvider = ({ ...props }) => {
     }
   };
 
+  const loginFromFacebook = async () => {
+    const userData = await signInWithFacebook();
+
+    if (userData) {
+      AsyncStorageService.setItem(
+        STORAGE_KEYS.ACCESS_TOKEN,
+        userData.accessToken,
+      );
+
+      setState({
+        ...state,
+        isAuthenticated: !!userData.accessToken,
+      });
+    }
+  };
+
   return (
     <AuthenticationContext.Provider
       value={{
@@ -100,6 +118,7 @@ const AuthenticationProvider = ({ ...props }) => {
         logout,
         markOnboardingCompleted,
         loginFromGoogle,
+        loginFromFacebook,
       }}
       {...props}
     />
