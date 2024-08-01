@@ -7,6 +7,7 @@ export const useScreenName = (SCREEN: string) => {
   const isHomeScreen = SCREEN === SCREENS.HOME;
   const isFavoritesScreen = SCREEN === SCREENS.FAVORITES;
   const isTrendingScreen = SCREEN === SCREENS.TRENDING;
+  const isProfileScreen = SCREEN === SCREENS.PROFILE;
 
   return {
     isSignInScreen,
@@ -15,5 +16,6 @@ export const useScreenName = (SCREEN: string) => {
     isHomeScreen,
     isFavoritesScreen,
     isTrendingScreen,
+    isProfileScreen,
   };
 };

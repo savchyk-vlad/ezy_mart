@@ -9,4 +9,5 @@ export const ThemeColors = {
   botticelli: '#D9E3EF',
   riverBed: '#45505F',
   gray: '#808080',
+  purple: '#4C46B8',
 };

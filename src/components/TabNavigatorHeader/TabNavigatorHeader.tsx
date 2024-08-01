@@ -45,15 +45,26 @@ const HomeHeader = ({ title }: { title: string }) => {
   );
 };
 
+const ProfileHeader = () => {
+  return <View style={styles.profile_header_container} />;
+};
+
 const TabNavigatorHeader = ({ title, screen }: ITabNavigatorHeader) => {
-  const { isHomeScreen, isTrendingScreen } = useScreenName(screen);
+  const { isHomeScreen, isTrendingScreen, isProfileScreen } =
+    useScreenName(screen);
 
   const isRightHeaderItemsVisible = isHomeScreen || isTrendingScreen;
 
   return (
-    <SafeAreaView style={styles.container}>
+    <SafeAreaView
+      style={[
+        styles.container,
+        isProfileScreen && styles.profile_header_container,
+      ]}>
       {isHomeScreen ? (
         <HomeHeader title={title} />
+      ) : isProfileScreen ? (
+        <ProfileHeader />
       ) : (
         <View style={styles.tab_header_icons_container}>
           <TouchableOpacity>
