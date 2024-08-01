@@ -54,6 +54,10 @@ export const styles = StyleSheet.create({
   header_title: {
     paddingLeft: 0,
   },
+  profile_header_container: {
+    backgroundColor: ThemeColors.purple,
+    shadowOpacity: 0,
+  },
 });
 
 export default styles;

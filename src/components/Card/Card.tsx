@@ -5,7 +5,13 @@ import { FavoriteIcon, StarIcon } from '~assets/images/icons/IconsSvg';
 import { ICard } from '~types';
 import styles from './styles';
 
-const Card = ({ product }: { product: ICard }) => {
+const Card = ({
+  product,
+  isLastProduct,
+}: {
+  product: ICard;
+  isLastProduct: boolean;
+}) => {
   const [favoriteButtonActiveStatus, setFavoriteButtonActiveStatus] =
     useState(false);
 
@@ -23,7 +29,8 @@ const Card = ({ product }: { product: ICard }) => {
   );
 
   return (
-    <TouchableOpacity style={styles.card_container}>
+    <TouchableOpacity
+      style={[styles.card_container, isLastProduct && styles.last_card]}>
       <View style={styles.discount_badge_container}>
         <Text style={styles.discount_text}>{discount}</Text>
       </View>
