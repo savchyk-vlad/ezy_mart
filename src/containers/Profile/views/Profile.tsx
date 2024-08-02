@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import React from 'react';
+import React, { useMemo } from 'react';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
@@ -19,7 +19,7 @@ import { ThemeColors } from '~assets';
 import styles from './styles';
 
 const Profile = () => {
-  const { logout } = useAuthentication();
+  const { user, logout } = useAuthentication();
   const scrollViewBackgroundColor = useSharedValue(ThemeColors.purple);
 
   const handleScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
@@ -38,6 +38,13 @@ const Profile = () => {
     };
   });
 
+  const { userFullName } = useMemo(
+    () => ({
+      userFullName: `${user.firstName} ${user.lastName}`,
+    }),
+    [user.firstName, user.lastName],
+  );
+
   return (
     <Animated.ScrollView
       onScroll={handleScrollEvent}
@@ -46,14 +53,16 @@ const Profile = () => {
       scrollEventThrottle={16}>
       <View style={styles.profile_header}>
         <View style={styles.profile_header_info_container}>
-          <Image
-            style={styles.profile_image}
-            resizeMode="cover"
-            source={require('../../../assets/images/fashion/image_2.png')}
-          />
+          {user?.image && (
+            <Image
+              style={styles.profile_image}
+              resizeMode="cover"
+              source={{ uri: user.image }}
+            />
+          )}
           <View>
-            <Text style={styles.profile_name}>Mahmodul Hasan</Text>
-            <Text style={styles.profile_email}>Info.mahmodul@gmail.com</Text>
+            <Text style={styles.profile_name}>{userFullName}</Text>
+            <Text style={styles.profile_email}>{user.email}</Text>
           </View>
         </View>
       </View>
