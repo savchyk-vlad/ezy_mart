@@ -12,13 +12,17 @@ const AppScreens = () => {
     <BottomNavigatorStack.Navigator backBehavior="history">
       {APP_ROOT_SCREENS.map(screen => (
         <BottomNavigatorStack.Screen
-          key={screen.name}
-          name={screen.title}
+          key={screen.screenRouteName}
+          name={screen.screenRouteName}
           component={screen.component}
           options={{
             tabBarIcon: ({ focused }) => screen.icon({ focused }),
+            title: screen.label,
             header: () => (
-              <TabNavigatorHeader title={screen.title} screen={screen.name} />
+              <TabNavigatorHeader
+                title={screen.label}
+                screenRouteName={screen.screenRouteName}
+              />
             ),
             ...bottomNavigatorOptions,
           }}

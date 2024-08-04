@@ -52,6 +52,7 @@
 		13B07FAE1A68108700A75B9A /* EzyMart */ = {
 			isa = PBXGroup;
 			children = (
+				180908CC2C5EF34700CAA60C /* Fonts */,
 				BB2F792B24A3F905000567C9 /* Supporting */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
@@ -64,6 +65,13 @@
 				9098FF9140371B5CAB3C9A96 /* PrivacyInfo.xcprivacy */,
 			);
 			name = EzyMart;
+			sourceTree = "<group>";
+		};
+		180908CC2C5EF34700CAA60C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		2D16E6871FA4F8E400B85C8A /* Frameworks */ = {

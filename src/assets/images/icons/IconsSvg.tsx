@@ -509,6 +509,25 @@ const ExclamationCircleIcon = ({ props }: { props?: SvgProps }) => {
   );
 };
 
+const XIcon = ({ props }: { props?: SvgProps }) => {
+  return (
+    <Svg width="44" height="44" viewBox="0 0 24 24" fill="none" {...props}>
+      <Path
+        d="M6 6C10.6863 10.6863 18 18 18 18"
+        stroke="black"
+        stroke-width="1.3"
+        stroke-linecap="round"
+      />
+      <Path
+        d="M18 6L6 18"
+        stroke="black"
+        stroke-width="1.3"
+        stroke-linecap="round"
+      />
+    </Svg>
+  );
+};
+
 export {
   EnvelopeIcon,
   RightArrowIcon,
@@ -540,4 +559,5 @@ export {
   ExclamationCircleIcon,
   BellRegularIcon,
   MapMarkerIcon,
+  XIcon,
 };

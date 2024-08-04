@@ -8,6 +8,7 @@ import { AuthScreens } from './AuthScreens';
 import { AppScreens } from './AppScreens';
 import { SplashScreen } from '../SplashScreen';
 import { PLATFORM } from '~constants';
+import DrawerNavigator from './DrawerNavigator/DrawerNavigator';
 
 const Navigation = () => {
   const { state: authState } = useAuthentication();
@@ -17,7 +18,7 @@ const Navigation = () => {
   const AuthStackApp = () => <AuthScreens />;
 
   const RootStackApp = () => {
-    return <AppScreens />;
+    return <DrawerNavigator />;
   };
 
   const ApplicationScreens = useMemo(() => {

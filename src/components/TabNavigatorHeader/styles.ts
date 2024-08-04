@@ -58,6 +58,9 @@ export const styles = StyleSheet.create({
     backgroundColor: ThemeColors.purple,
     shadowOpacity: 0,
   },
+  back_arrow: {
+    zIndex: 220,
+  },
 });
 
 export default styles;

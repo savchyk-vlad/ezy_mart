@@ -1,49 +1,19 @@
-import {
-  Image,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  Text,
-  TouchableOpacity,
-  View,
-} from 'react-native';
-import React, { useMemo } from 'react';
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-} from 'react-native-reanimated';
+import React from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
+import Animated from 'react-native-reanimated';
 
-import { useAuthentication } from '~providers/auth/AuthenticationProvider';
-import { TouchableOpacityButton } from '~components';
-import { PROFILE_BUTTONS } from '../profile_buttons';
+import { useProfile } from '../hooks/useProfile';
 import { ThemeColors } from '~assets';
 import styles from './styles';
 
 const Profile = () => {
-  const { user, logout } = useAuthentication();
-  const scrollViewBackgroundColor = useSharedValue(ThemeColors.purple);
-
-  const handleScrollEvent = (e: NativeSyntheticEvent<NativeScrollEvent>) => {
-    const currentOffsetY = e.nativeEvent.contentOffset.y;
-
-    if (currentOffsetY > 0) {
-      scrollViewBackgroundColor.value = ThemeColors.white;
-    } else {
-      scrollViewBackgroundColor.value = ThemeColors.purple;
-    }
-  };
-
-  const animationActiveStyle = useAnimatedStyle(() => {
-    return {
-      backgroundColor: scrollViewBackgroundColor.value,
-    };
-  });
-
-  const { userFullName } = useMemo(
-    () => ({
-      userFullName: `${user.firstName} ${user.lastName}`,
-    }),
-    [user.firstName, user.lastName],
-  );
+  const {
+    user,
+    handleScrollEvent,
+    animationActiveStyle,
+    userFullName,
+    PROFILE_NAVIGATION_ITEMS,
+  } = useProfile();
 
   return (
     <Animated.ScrollView
@@ -68,7 +38,7 @@ const Profile = () => {
       </View>
 
       <View style={styles.profile_buttons_container}>
-        {PROFILE_BUTTONS.map(item => (
+        {PROFILE_NAVIGATION_ITEMS.map(item => (
           <TouchableOpacity
             key={item.buttonText}
             onPress={item.pressEvent}
@@ -77,12 +47,6 @@ const Profile = () => {
             <Text style={styles.profile_button_text}>{item.buttonText}</Text>
           </TouchableOpacity>
         ))}
-
-        <TouchableOpacityButton
-          onPress={logout}
-          text={'Logout'}
-          style={{ borderColor: ThemeColors.botticelli }}
-        />
       </View>
     </Animated.ScrollView>
   );

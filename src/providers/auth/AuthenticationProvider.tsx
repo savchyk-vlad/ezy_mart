@@ -79,7 +79,6 @@ const AuthenticationProvider = ({ ...props }) => {
     }
 
     AsyncStorageService.clearStorage([
-      STORAGE_KEYS.IS_ONBOARDING_COMPLETED,
       STORAGE_KEYS.ACCESS_TOKEN,
       STORAGE_KEYS.USER_INFORMATION,
     ]);

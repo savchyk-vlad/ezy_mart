@@ -10,4 +10,6 @@ export const ThemeColors = {
   riverBed: '#45505F',
   gray: '#808080',
   purple: '#4C46B8',
+  drawer_in_active: '#616161',
+  orange: '#F76834',
 };
