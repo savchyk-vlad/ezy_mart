@@ -20,7 +20,6 @@ class StorageService {
     }
   }
 
-
   async removeItem(key: string) {
     try {
       await AsyncStorage.removeItem(key);
@@ -34,8 +33,8 @@ class StorageService {
       if (excludeKeys?.length) {
         const allKeys = await AsyncStorage.getAllKeys();
 
-        const keysToRemove = allKeys.filter(
-          key => !excludeKeys.find(exKey => key === exKey),
+        const keysToRemove = allKeys.filter(key =>
+          excludeKeys.find(exKey => key === exKey),
         );
 
         await AsyncStorage.multiRemove(keysToRemove);

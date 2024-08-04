@@ -7,12 +7,18 @@ import {
   BurgerIcon,
   CartIcon,
 } from '~assets/images/icons/IconsSvg';
+import { useTabNavigatorHeader } from './hooks/useTabNavigatorHeader';
 import { useScreenName } from '~hooks';
 import styles from './styles';
 
 interface ITabNavigatorHeader {
   title: string;
-  screen: string;
+  screenRouteName: string;
+}
+
+interface ITabHomeHeader {
+  title: string;
+  handleDrawer: () => void;
 }
 
 const RightSideIcons = () => {
@@ -29,11 +35,11 @@ const RightSideIcons = () => {
   );
 };
 
-const HomeHeader = ({ title }: { title: string }) => {
+const HomeHeader = ({ title, handleDrawer }: ITabHomeHeader) => {
   return (
     <View style={styles.home_header_container}>
       <View style={styles.home_header_burger_container}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={handleDrawer}>
           <BurgerIcon width={30} height={30} />
         </TouchableOpacity>
 
@@ -49,25 +55,30 @@ const ProfileHeader = () => {
   return <View style={styles.profile_header_container} />;
 };
 
-const TabNavigatorHeader = ({ title, screen }: ITabNavigatorHeader) => {
+const TabNavigatorHeader = ({
+  title,
+  screenRouteName,
+}: ITabNavigatorHeader) => {
+  const { handleBackToHome, handleOpenDrawer } = useTabNavigatorHeader();
   const { isHomeScreen, isTrendingScreen, isProfileScreen } =
-    useScreenName(screen);
+    useScreenName(screenRouteName);
 
   const isRightHeaderItemsVisible = isHomeScreen || isTrendingScreen;
+  const profileHeaderStyle = isProfileScreen && styles.profile_header_container;
 
   return (
     <SafeAreaView
-      style={[
-        styles.container,
-        isProfileScreen && styles.profile_header_container,
-      ]}>
-      {isHomeScreen ? (
-        <HomeHeader title={title} />
-      ) : isProfileScreen ? (
-        <ProfileHeader />
-      ) : (
+      style={[styles.container, profileHeaderStyle && profileHeaderStyle]}>
+      {isHomeScreen && (
+        <HomeHeader title={title} handleDrawer={handleOpenDrawer} />
+      )}
+      {isProfileScreen && <ProfileHeader />}
+
+      {!isHomeScreen && !isProfileScreen && (
         <View style={styles.tab_header_icons_container}>
-          <TouchableOpacity>
+          <TouchableOpacity
+            onPress={handleBackToHome}
+            style={styles.back_arrow}>
             <BackArrowIcon width={30} height={30} />
           </TouchableOpacity>
 

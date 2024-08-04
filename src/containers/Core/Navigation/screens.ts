@@ -34,33 +34,33 @@ export const AUTH_SCREENS = [
 
 export const APP_ROOT_SCREENS = [
   {
-    name: SCREENS.HOME,
+    screenRouteName: SCREENS.HOME,
     component: Home,
-    title: 'Home',
+    label: 'Home',
     icon: TabHomeIcon,
   },
   {
-    name: SCREENS.TRENDING,
+    screenRouteName: SCREENS.TRENDING,
     component: Trending,
-    title: 'Trending',
+    label: 'Trending',
     icon: TabTrendingIcon,
   },
   {
-    name: SCREENS.CHAT,
+    screenRouteName: SCREENS.CHAT,
     component: Chat,
-    title: 'Chat',
+    label: 'Chat',
     icon: TabChatIcon,
   },
   {
-    name: SCREENS.FAVORITES,
+    screenRouteName: SCREENS.FAVORITES,
     component: Favorites,
-    title: 'Favorites',
+    label: 'Favorites',
     icon: TabFavoritesIcon,
   },
   {
-    name: SCREENS.PROFILE,
+    screenRouteName: SCREENS.PROFILE,
     component: Profile,
-    title: 'Profile',
+    label: 'Profile',
     icon: TabProfileIcon,
   },
 ];

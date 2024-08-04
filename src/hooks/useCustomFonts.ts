@@ -15,6 +15,7 @@ import {
 } from '@expo-google-fonts/open-sans';
 import { BeVietnamPro_400Regular } from '@expo-google-fonts/be-vietnam-pro';
 import { PlusJakartaSans_600SemiBold } from '@expo-google-fonts/plus-jakarta-sans';
+import { Roboto_700Bold } from '@expo-google-fonts/roboto';
 
 export const useCustomFonts = () => {
   const [fontsLoaded] = useFonts({
@@ -28,6 +29,7 @@ export const useCustomFonts = () => {
     BeVietnamPro_400Regular,
     OpenSans_500Medium,
     OpenSans_400Regular,
+    Roboto_700Bold,
   });
 
   return { fontsLoaded };

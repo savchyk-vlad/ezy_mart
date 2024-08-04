@@ -4,4 +4,6 @@ export enum STORAGE_KEYS {
   REFRESH_TOKEN = 'refreshToken',
   // Onboarding
   IS_ONBOARDING_COMPLETED = 'isOnboardingCompleted',
+  // User
+  USER_INFORMATION = 'userInformation',
 }
