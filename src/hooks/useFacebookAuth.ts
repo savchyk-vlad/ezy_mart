@@ -28,7 +28,11 @@ export const useFacebookAuth = () => {
         userData,
         accessToken: res.authentication?.accessToken,
       };
-    } catch (error) {}
+    } catch (error) {
+      console.warn(error);
+
+      return null;
+    }
   };
 
   return { signInWithFacebook };

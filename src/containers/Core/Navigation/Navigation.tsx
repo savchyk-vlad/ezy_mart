@@ -11,8 +11,11 @@ import { PLATFORM } from '~constants';
 import DrawerNavigator from './DrawerNavigator/DrawerNavigator';
 
 const Navigation = () => {
-  const { state: authState } = useAuthentication();
-  const [splashScreenVisible, setSplashScreenVisible] = useState(true);
+  const {
+    state: authState,
+    splashScreenVisible,
+    setSplashScreenVisible,
+  } = useAuthentication();
   const { fontsLoaded } = useCustomFonts();
 
   const AuthStackApp = () => <AuthScreens />;

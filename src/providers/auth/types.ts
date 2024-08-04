@@ -20,8 +20,10 @@ export interface IState {
 export interface IAuthContext {
   state: IState;
   user: IUser;
+  splashScreenVisible: boolean;
   logout: () => void;
   markOnboardingCompleted: () => void;
   loginFromGoogle: () => void;
   loginFromFacebook: () => void;
+  setSplashScreenVisible: (value: boolean) => void;
 }
