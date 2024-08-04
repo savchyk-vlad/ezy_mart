@@ -29,16 +29,19 @@ const initialState: IState = {
 const AuthenticationContext = React.createContext<IAuthContext>({
   state: initialState,
   user: userInitialState,
+  splashScreenVisible: true,
   logout: () => null,
   markOnboardingCompleted: () => null,
   loginFromGoogle: () => null,
   loginFromFacebook: () => null,
+  setSplashScreenVisible: () => null,
 });
 
 const AuthenticationProvider = ({ ...props }) => {
   const [state, setState] = useState(initialState);
   const { signInWithGoogle } = useGoogleAuth();
   const { signInWithFacebook } = useFacebookAuth();
+  const [splashScreenVisible, setSplashScreenVisible] = useState(true);
 
   useEffect(() => {
     const getAuthState = async () => {
@@ -78,15 +81,19 @@ const AuthenticationProvider = ({ ...props }) => {
       return;
     }
 
-    AsyncStorageService.clearStorage([
+    setSplashScreenVisible(true);
+    await AsyncStorageService.clearStorage([
       STORAGE_KEYS.ACCESS_TOKEN,
       STORAGE_KEYS.USER_INFORMATION,
     ]);
 
     setState({
       ...state,
+      initialRouteName: SCREENS.SIGN_IN,
       isAuthenticated: false,
     });
+
+    setSplashScreenVisible(false);
   };
 
   const markOnboardingCompleted = async () => {
@@ -109,6 +116,7 @@ const AuthenticationProvider = ({ ...props }) => {
   };
 
   const loginFromGoogle = async () => {
+    setSplashScreenVisible(true);
     const googleResponse = await signInWithGoogle();
 
     if (googleResponse?.idToken) {
@@ -119,16 +127,16 @@ const AuthenticationProvider = ({ ...props }) => {
 
       const user = {
         birthdate: state.userData.birthdate || '',
-        email: state.userData.email || googleResponse.user.email,
-        firstName: state.userData.firstName || googleResponse.user.givenName,
+        email: googleResponse.user.email,
+        firstName: googleResponse.user.givenName,
         gender: state.userData.gender || '',
-        lastName: state.userData.lastName || googleResponse.user.familyName,
+        lastName: googleResponse.user.familyName,
         phoneNumber: state.userData.phoneNumber || '',
         nickname: state.userData.nickname || '',
-        image: state.userData.image || googleResponse.user.photo,
+        image: googleResponse.user.photo,
       };
 
-      AsyncStorageService.setItem(
+      await AsyncStorageService.setItem(
         STORAGE_KEYS.USER_INFORMATION,
         JSON.stringify(user),
       );
@@ -136,12 +144,15 @@ const AuthenticationProvider = ({ ...props }) => {
       setState({
         ...state,
         userData: { ...user },
-        isAuthenticated: !!googleResponse.idToken,
+        isAuthenticated: true,
       });
     }
+    setSplashScreenVisible(false);
   };
 
   const loginFromFacebook = async () => {
+    setSplashScreenVisible(true);
+
     const facebookResponse = await signInWithFacebook();
 
     if (facebookResponse?.accessToken) {
@@ -161,7 +172,7 @@ const AuthenticationProvider = ({ ...props }) => {
         image: facebookResponse.userData.picture.data.url,
       };
 
-      AsyncStorageService.setItem(
+      await AsyncStorageService.setItem(
         STORAGE_KEYS.USER_INFORMATION,
         JSON.stringify(user),
       );
@@ -169,9 +180,10 @@ const AuthenticationProvider = ({ ...props }) => {
       setState({
         ...state,
         userData: { ...user },
-        isAuthenticated: !!facebookResponse.accessToken,
+        isAuthenticated: true,
       });
     }
+    setSplashScreenVisible(false);
   };
 
   return (
@@ -183,6 +195,8 @@ const AuthenticationProvider = ({ ...props }) => {
         markOnboardingCompleted,
         loginFromGoogle,
         loginFromFacebook,
+        splashScreenVisible,
+        setSplashScreenVisible,
       }}
       {...props}
     />

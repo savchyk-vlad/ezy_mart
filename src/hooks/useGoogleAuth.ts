@@ -15,7 +15,11 @@ export const useGoogleAuth = () => {
       const googleRes = await GoogleSignin.signIn();
 
       return googleRes;
-    } catch (error) {}
+    } catch (error) {
+      console.warn(error);
+
+      return null;
+    }
   };
 
   return { signInWithGoogle };

@@ -3,29 +3,18 @@ import { View, TouchableOpacity, Text } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { Formik } from 'formik';
 
-import {
-  CustomFormInput,
-  KeyboardDismissWrapper,
-  TouchableOpacityButton,
-} from '~components';
-import { useSignIn } from './hooks/useSignIn';
 import { useValidation } from './hooks/useValidation';
-import { useAuthentication } from '~providers/auth/AuthenticationProvider';
+import { useSignIn } from './hooks/useSignIn';
 
-import {
-  AppleIcon,
-  FacebookIcon,
-  GoogleIcon,
-} from '~assets/images/icons/IconsSvg';
+import { CustomFormInput, KeyboardDismissWrapper } from '~components';
 import { INPUTS, PLATFORM } from '~constants';
 import styles from './styles';
 
 const initialValues = { email: '', password: '' };
 
 const SignIn = () => {
-  const { goToSignUp } = useSignIn();
+  const { goToSignUp, AUTH_BUTTONS } = useSignIn();
   const { validationSchema } = useValidation();
-  const { loginFromGoogle, loginFromFacebook } = useAuthentication();
 
   return (
     <KeyboardDismissWrapper>
@@ -103,30 +92,15 @@ const SignIn = () => {
                   <Text style={styles.line_divider_text}>OR</Text>
                 </View>
 
-                <TouchableOpacityButton
-                  icon={<AppleIcon />}
-                  text={'Continue with Apple'}
-                />
-
-                <TouchableOpacityButton
-                  onPress={loginFromFacebook}
-                  icon={
-                    <View style={styles.facebook_icon_container}>
-                      <FacebookIcon
-                        width={26}
-                        height={26}
-                        style={styles.facebook_icon}
-                      />
-                    </View>
-                  }
-                  text={'Continue with Facebook'}
-                />
-
-                <TouchableOpacityButton
-                  onPress={loginFromGoogle}
-                  icon={<GoogleIcon width={26} height={22} />}
-                  text={'Continue with Google'}
-                />
+                {AUTH_BUTTONS.map(button => (
+                  <TouchableOpacity
+                    key={button.label}
+                    style={styles.auth_button_container}
+                    onPress={button.action}>
+                    {button.icon}
+                    <Text style={styles.auth_button_label}>{button.label}</Text>
+                  </TouchableOpacity>
+                ))}
               </View>
             )}
           </Formik>

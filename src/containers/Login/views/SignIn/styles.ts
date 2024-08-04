@@ -77,6 +77,23 @@ export const styles = StyleSheet.create({
   forgot_password_container: {
     marginTop: 20,
   },
+  auth_button_container: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 18,
+    borderColor: '#EEEEEE',
+    borderWidth: 1,
+    borderRadius: 100,
+    backgroundColor: ThemeColors.white,
+    padding: 20,
+  },
+  auth_button_label: {
+    textAlign: 'center',
+    fontFamily: 'Inter_500Medium',
+    fontSize: 20,
+    paddingLeft: 20,
+  },
 });
 
 export default styles;
