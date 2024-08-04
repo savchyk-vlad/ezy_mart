@@ -94,6 +94,7 @@ const SignIn = () => {
 
                 {AUTH_BUTTONS.map(button => (
                   <TouchableOpacity
+                    key={button.label}
                     style={styles.auth_button_container}
                     onPress={button.action}>
                     {button.icon}
