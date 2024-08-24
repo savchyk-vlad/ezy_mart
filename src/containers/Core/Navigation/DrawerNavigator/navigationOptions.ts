@@ -1,10 +1,11 @@
-import { DrawerNavigationOptions } from '@react-navigation/drawer';
+import { createStyleSheet } from 'react-native-unistyles';
 
-export const drawerNavigatorOptions: DrawerNavigationOptions = {
-  headerShown: false,
-  swipeEnabled: false,
-  drawerType: 'front',
+import { ITheme } from '~types';
+
+//@ts-ignore
+export const navigationOptions = createStyleSheet((theme: ITheme) => ({
   drawerStyle: {
+    backgroundColor: '#fff',
     width: '86%',
   },
-};
+}));

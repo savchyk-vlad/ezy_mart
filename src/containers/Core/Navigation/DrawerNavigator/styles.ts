@@ -1,17 +1,18 @@
-import { StyleSheet } from 'react-native';
-import { ThemeColors } from '~assets';
-import { WIDTH } from '~constants';
+import { createStyleSheet } from 'react-native-unistyles';
 
-export const styles = StyleSheet.create({
+import { ThemeColors, ThemeFonts, ThemeLayouts } from '~assets';
+import { ITheme } from '~types';
+
+export const stylesheet = createStyleSheet((theme: ITheme) => ({
   drawer_header_container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    justifyContent: ThemeLayouts.justifyContent.spaceBetween,
+    alignItems: ThemeLayouts.alignItems.center,
     height: 80,
     padding: 20,
   },
   drawer_header_logo: {
-    fontFamily: 'Roboto_700Bold',
+    fontFamily: ThemeFonts.fontFamily.Roboto.Bold,
     fontSize: 30,
   },
   drawer_header_underline: {
@@ -20,8 +21,8 @@ export const styles = StyleSheet.create({
     backgroundColor: ThemeColors.botticelli,
   },
   drawer_item_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
     paddingVertical: 10,
   },
   drawer_active_marker: {
@@ -38,12 +39,12 @@ export const styles = StyleSheet.create({
     paddingVertical: 16,
   },
   drawer_item_label: {
-    fontFamily: 'Poppins_500Medium',
+    fontFamily: ThemeFonts.fontFamily.Poppins.Medium,
     color: ThemeColors.purple,
     fontSize: 20,
   },
   drawer_in_active_item_label: {
-    fontFamily: 'Poppins_500Medium',
+    fontFamily: ThemeFonts.fontFamily.Poppins.Medium,
     color: ThemeColors.drawer_in_active,
     fontSize: 20,
   },
@@ -53,16 +54,16 @@ export const styles = StyleSheet.create({
     marginBottom: 6,
   },
   drawer_log_out_item_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
+    justifyContent: ThemeLayouts.justifyContent.center,
     marginTop: 60,
     width: '86%',
   },
   drawer_log_out_item_label: {
-    fontFamily: 'Poppins_500Medium',
+    fontFamily: ThemeFonts.fontFamily.Poppins.Medium,
     color: ThemeColors.orange,
     fontSize: 20,
     textTransform: 'uppercase',
   },
-});
+}));

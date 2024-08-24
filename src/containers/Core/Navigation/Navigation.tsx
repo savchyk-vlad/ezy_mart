@@ -5,7 +5,6 @@ import { useCustomFonts } from '~hooks';
 import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 
 import { AuthScreens } from './AuthScreens';
-import { AppScreens } from './AppScreens';
 import { SplashScreen } from '../SplashScreen';
 import { PLATFORM } from '~constants';
 import DrawerNavigator from './DrawerNavigator/DrawerNavigator';

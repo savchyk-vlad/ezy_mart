@@ -1,5 +1,7 @@
 import { StyleSheet } from 'react-native';
 
+import { ThemeFonts, ThemeLayouts } from '~assets';
+
 export const styles = StyleSheet.create({
   input_container: {
     borderColor: '#E5E7EB',
@@ -7,17 +9,17 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 20,
     borderRadius: 30,
     paddingRight: 36,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: ThemeLayouts.justifyContent.spaceBetween,
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
     backgroundColor: '#F9FAFB',
     marginVertical: 10,
   },
   input_inner_view: {
     flex: 1,
-    justifyContent: 'space-between',
-    flexDirection: 'row',
-    alignItems: 'center',
+    justifyContent: ThemeLayouts.justifyContent.spaceBetween,
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
     paddingRight: 40,
   },
   input_icon_container: {
@@ -27,14 +29,14 @@ export const styles = StyleSheet.create({
     width: '100%',
     height: 50,
     color: '#A7A8AC',
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 20,
   },
   error_text: {
-    position: 'absolute',
+    position: ThemeLayouts.position.absolute,
     bottom: -17,
     left: 0,
-    fontFamily: 'Inter_500Medium',
+    fontFamily: ThemeFonts.fontFamily.Inter.Medium,
   },
   success_icon: {
     opacity: 1,

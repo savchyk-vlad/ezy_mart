@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { ThemeColors } from '~assets';
+import { ThemeColors, ThemeLayouts } from '~assets';
 import { HEIGHT } from '~constants';
 
 export const styles = StyleSheet.create({
@@ -18,8 +18,8 @@ export const styles = StyleSheet.create({
     paddingVertical: 30,
   },
   profile_header_info_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
   },
   profile_image: {
     width: 80,
@@ -42,8 +42,8 @@ export const styles = StyleSheet.create({
   profile_button: {
     paddingHorizontal: 20,
     paddingVertical: 30,
-    flexDirection: 'row',
-    alignItems: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
     gap: 20,
     borderColor: 'rgba(76, 70, 184, 0.2)',
     borderBottomWidth: 0.2,

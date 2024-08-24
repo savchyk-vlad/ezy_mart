@@ -7,7 +7,7 @@ export const styles = StyleSheet.create({
     width: WIDTH,
   },
   image: {
-    position: 'absolute',
+    position: ThemeLayouts.position.absolute,
     top: 0,
     left: 0,
     height: HEIGHT,
@@ -15,8 +15,8 @@ export const styles = StyleSheet.create({
     resizeMode: 'cover',
   },
   skipButton: {
-    fontFamily: 'Poppins_500Medium',
-    textAlign: 'right',
+    fontFamily: ThemeFonts.fontFamily.Poppins.Medium,
+    textAlign: ThemeFonts.textAlign.right,
     fontSize: ThemeFonts.fontSize.xxxxl,
     paddingHorizontal: ThemeLayouts.padding.xxxxxxl,
     paddingVertical: ThemeLayouts.padding.xl,
@@ -35,15 +35,15 @@ export const styles = StyleSheet.create({
     fontSize: 34,
   },
   popUpBottomContainer: {
-    flexDirection: 'row',
+    flexDirection: ThemeLayouts.flexDirection.row,
     justifyContent: 'flex-end',
     marginVertical: 50,
     marginHorizontal: 10,
   },
   popUpPointsContainer: {
-    flexDirection: 'row',
+    flexDirection: ThemeLayouts.flexDirection.row,
     marginTop: 7,
-    justifyContent: 'space-between',
+    justifyContent: ThemeLayouts.justifyContent.spaceBetween,
   },
   popUpPoint: {
     backgroundColor: '#A7A8AC',
@@ -65,9 +65,9 @@ export const styles = StyleSheet.create({
     borderRadius: 50,
   },
   popUpParagraph: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 20,
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     paddingTop: 20,
   },
   popUpButton: {
@@ -77,7 +77,7 @@ export const styles = StyleSheet.create({
     marginTop: 28,
   },
   popUpButtonText: {
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     fontFamily: 'Inter_600SemiBold',
     color: '#FFFFFF',
     fontSize: 20,

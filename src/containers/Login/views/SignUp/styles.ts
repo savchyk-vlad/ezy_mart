@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { ThemeColors } from '~assets';
-import { WIDTH } from '~constants';
+import { ThemeColors, ThemeFonts, ThemeLayouts } from '~assets';
 
 export const styles = StyleSheet.create({
   container: {
@@ -20,13 +19,13 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   sign_up_button_text: {
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     color: ThemeColors.white,
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: ThemeFonts.fontFamily.Poppins.SemiBold,
     fontSize: 20,
   },
   checkbox_container: {
-    flexDirection: 'row',
+    flexDirection: ThemeLayouts.flexDirection.row,
   },
   checkbox: {
     padding: 0,
@@ -35,26 +34,26 @@ export const styles = StyleSheet.create({
   checkbox_label: {
     marginTop: 16,
     fontSize: 14,
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
   },
   already_have_account_container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    justifyContent: ThemeLayouts.justifyContent.center,
     marginTop: 26,
   },
   sign_up_button_aside_text: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 16,
   },
   sigh_up_button_title: {
     color: '#4C46B8',
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 16,
     paddingLeft: 4,
   },
   checkbox_hyperlink: {
     color: '#4C46B8',
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 14,
     paddingLeft: 4,
   },

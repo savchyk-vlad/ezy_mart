@@ -1,15 +1,15 @@
-import { StyleSheet } from 'react-native';
+import { createStyleSheet } from 'react-native-unistyles';
 
-import { ThemeColors } from '~assets';
+import { ITheme } from '~types';
 
-export const styles = StyleSheet.create({
+const stylesheet = createStyleSheet((theme: ITheme) => ({
   home_view_scrollView: {
-    backgroundColor: ThemeColors.white,
+    backgroundColor: theme.colors.background,
   },
   home_view_scrollView_container: {
     flex: 1,
-    backgroundColor: ThemeColors.white,
+    backgroundColor: theme.colors.background,
   },
-});
+}));
 
-export default styles;
+export default stylesheet;

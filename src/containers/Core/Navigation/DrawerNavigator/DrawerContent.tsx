@@ -6,11 +6,14 @@ import { useDrawerNavigator, IDrawerItem } from './hooks/useDrawerNavigator';
 import { useAuthentication } from '~providers/auth/AuthenticationProvider';
 import { XIcon } from '~assets/images/icons/IconsSvg';
 import { ThemeColors } from '~assets';
-import { styles } from './styles';
+import { stylesheet } from './styles';
+import { useStyles } from 'react-native-unistyles';
 
 const DrawerContent = ({ ...props }) => {
   const { handleCloseDrawer, DRAWER_NAVIGATION_ITEMS } = useDrawerNavigator();
   const { logout } = useAuthentication();
+
+  const { styles } = useStyles(stylesheet);
 
   const switchActiveColor = '#448FFF';
   const switchInActiveColor = '#dedede';

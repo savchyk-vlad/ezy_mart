@@ -2,7 +2,8 @@ import { useNavigation, DrawerActions } from '@react-navigation/native';
 import { useState } from 'react';
 
 import { NavigationProps } from '~types/navigationTypes/navigation.types';
-import { SCREENS } from '~constants';
+import { SCREENS, THEMES } from '~constants';
+import { UnistylesRuntime } from 'react-native-unistyles';
 
 export interface IDrawerItem {
   iconName: string;
@@ -17,6 +18,15 @@ export const useDrawerNavigator = () => {
   const [nightMode, setNightMode] = useState(false);
 
   const handleCloseDrawer = () => dispatch(DrawerActions.closeDrawer());
+
+  const handleChangeTheme = () => {
+    setNightMode(!nightMode);
+    UnistylesRuntime.setTheme(
+      UnistylesRuntime.themeName === THEMES.DARK
+        ? (THEMES.LIGHT as never)
+        : (THEMES.DARK as never),
+    );
+  };
 
   const DRAWER_NAVIGATION_ITEMS: IDrawerItem[] = [
     {
@@ -52,7 +62,7 @@ export const useDrawerNavigator = () => {
     {
       iconName: 'moon',
       label: 'Night Mode',
-      switchAction: () => setNightMode(!nightMode),
+      switchAction: handleChangeTheme,
       isNightModeActive: nightMode,
     },
     {

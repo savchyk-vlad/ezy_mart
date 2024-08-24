@@ -1,13 +1,16 @@
 import React from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useStyles } from 'react-native-unistyles';
 
 import { APP_ROOT_SCREENS } from '../screens';
 import { TabNavigatorHeader } from '~components';
-import { bottomNavigatorOptions } from './navigationOptions';
+import { navigationOptions } from './navigationOptions';
 
 const BottomNavigatorStack = createBottomTabNavigator();
 
 const AppScreens = () => {
+  // const { styles } = useStyles(navigationOptions);
+
   return (
     <BottomNavigatorStack.Navigator backBehavior="history">
       {APP_ROOT_SCREENS.map(screen => (
@@ -24,7 +27,7 @@ const AppScreens = () => {
                 screenRouteName={screen.screenRouteName}
               />
             ),
-            ...bottomNavigatorOptions,
+            // ...styles,
           }}
         />
       ))}

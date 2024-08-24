@@ -1,5 +1,3 @@
-import { Platform } from 'react-native';
-
 export const ThemeColors = {
   white: '#FFFFFF',
   black: '#000000',
@@ -12,4 +10,9 @@ export const ThemeColors = {
   purple: '#4C46B8',
   drawer_in_active: '#616161',
   orange: '#F76834',
+  dark_background: '#31363F',
+  dark_header_and_tabs: '#222831',
+  header_text_color: '#323131',
+  tabBarActiveTintColor: '#4C46B8',
+  tabBarInactiveTintColor: '#757575',
 };

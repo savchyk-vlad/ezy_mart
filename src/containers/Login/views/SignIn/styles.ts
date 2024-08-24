@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 
-import { ThemeColors } from '~assets';
+import { ThemeColors, ThemeFonts, ThemeLayouts } from '~assets';
 import { WIDTH } from '~constants';
 
 export const styles = StyleSheet.create({
@@ -13,9 +13,9 @@ export const styles = StyleSheet.create({
     paddingTop: 60,
   },
   forgot_password_text: {
-    textAlign: 'right',
+    textAlign: ThemeFonts.textAlign.right,
     color: '#4C46B8',
-    fontFamily: 'Inter_500Medium',
+    fontFamily: ThemeFonts.fontFamily.Inter.Medium,
     fontSize: 18,
   },
   submit_button_container: {
@@ -26,23 +26,23 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   submit_button_text: {
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     color: ThemeColors.white,
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: ThemeFonts.fontFamily.Poppins.SemiBold,
     fontSize: 20,
   },
   sign_up_button_container: {
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    justifyContent: ThemeLayouts.justifyContent.center,
     marginTop: 16,
   },
   sign_up_button_aside_text: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 18,
   },
   sigh_up_button_title: {
     color: '#4C46B8',
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 18,
     paddingLeft: 4,
   },
@@ -55,10 +55,10 @@ export const styles = StyleSheet.create({
   line_divider_text: {
     top: -7,
     left: (WIDTH - 136) / 2,
-    position: 'absolute',
-    fontFamily: 'Inter_500Medium',
+    position: ThemeLayouts.position.absolute,
+    fontFamily: ThemeFonts.fontFamily.Inter.Medium,
     color: '#D3D4D5',
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     verticalAlign: 'middle',
     paddingHorizontal: 30,
     backgroundColor: '#FFFFFF',
@@ -70,7 +70,7 @@ export const styles = StyleSheet.create({
     borderRadius: 100,
   },
   facebook_icon: {
-    position: 'absolute',
+    position: ThemeLayouts.position.absolute,
     bottom: 0,
     right: 0,
   },
@@ -78,9 +78,9 @@ export const styles = StyleSheet.create({
     marginTop: 20,
   },
   auth_button_container: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    alignItems: ThemeLayouts.alignItems.center,
+    justifyContent: ThemeLayouts.justifyContent.center,
     marginBottom: 18,
     borderColor: '#EEEEEE',
     borderWidth: 1,
@@ -89,8 +89,8 @@ export const styles = StyleSheet.create({
     padding: 20,
   },
   auth_button_label: {
-    textAlign: 'center',
-    fontFamily: 'Inter_500Medium',
+    textAlign: ThemeFonts.textAlign.center,
+    fontFamily: ThemeFonts.fontFamily.Inter.Medium,
     fontSize: 20,
     paddingLeft: 20,
   },

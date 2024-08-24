@@ -1,10 +1,12 @@
 import { StyleSheet } from 'react-native';
 
+import { ThemeLayouts } from '~assets';
+
 export const styles = StyleSheet.create({
   search_bar_container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
+    flexDirection: ThemeLayouts.flexDirection.row,
+    justifyContent: ThemeLayouts.justifyContent.spaceBetween,
+    alignItems: ThemeLayouts.alignItems.center,
     paddingVertical: 20,
   },
   input_container_style: {

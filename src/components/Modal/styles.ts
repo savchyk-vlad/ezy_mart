@@ -25,25 +25,25 @@ export const styles = StyleSheet.create({
     borderRadius: 8,
   },
   sign_up_button_text: {
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     color: ThemeColors.white,
-    fontFamily: 'Poppins_600SemiBold',
+    fontFamily: ThemeFonts.fontFamily.Poppins.SemiBold,
     fontSize: 20,
   },
   modal_text: {
     paddingBottom: 10,
     fontFamily: 'Inter_600SemiBold',
     fontSize: 30,
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
   },
   modal_description: {
-    fontFamily: 'Inter_400Regular',
+    fontFamily: ThemeFonts.fontFamily.Inter.Regular,
     fontSize: 16,
-    textAlign: 'center',
+    textAlign: ThemeFonts.textAlign.center,
     color: '#7B7D82',
   },
   icon_container: {
-    alignItems: 'center',
+    alignItems: ThemeLayouts.alignItems.center,
     top: -50,
   },
 });

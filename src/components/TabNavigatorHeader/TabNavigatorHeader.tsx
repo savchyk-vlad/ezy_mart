@@ -9,7 +9,8 @@ import {
 } from '~assets/images/icons/IconsSvg';
 import { useTabNavigatorHeader } from './hooks/useTabNavigatorHeader';
 import { useScreenName } from '~hooks';
-import styles from './styles';
+import { stylesheet } from './styles';
+import { useStyles } from 'react-native-unistyles';
 
 interface ITabNavigatorHeader {
   title: string;
@@ -22,6 +23,8 @@ interface ITabHomeHeader {
 }
 
 const RightSideIcons = () => {
+  const { styles } = useStyles(stylesheet);
+
   return (
     <View style={styles.right_icons_container}>
       <TouchableOpacity>
@@ -36,6 +39,8 @@ const RightSideIcons = () => {
 };
 
 const HomeHeader = ({ title, handleDrawer }: ITabHomeHeader) => {
+  const { styles } = useStyles(stylesheet);
+
   return (
     <View style={styles.home_header_container}>
       <View style={styles.home_header_burger_container}>
@@ -52,6 +57,8 @@ const HomeHeader = ({ title, handleDrawer }: ITabHomeHeader) => {
 };
 
 const ProfileHeader = () => {
+  const { styles } = useStyles(stylesheet);
+
   return <View style={styles.profile_header_container} />;
 };
 
@@ -62,6 +69,7 @@ const TabNavigatorHeader = ({
   const { handleBackToHome, handleOpenDrawer } = useTabNavigatorHeader();
   const { isHomeScreen, isTrendingScreen, isProfileScreen } =
     useScreenName(screenRouteName);
+  const { styles } = useStyles(stylesheet);
 
   const isRightHeaderItemsVisible = isHomeScreen || isTrendingScreen;
   const profileHeaderStyle = isProfileScreen && styles.profile_header_container;

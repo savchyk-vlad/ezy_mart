@@ -1,7 +1,8 @@
 import * as React from 'react';
 import { View } from 'react-native';
 import Svg, { SvgProps, Path, Circle } from 'react-native-svg';
-import { ThemeColors } from '~assets/theme';
+
+import { ThemeColors, ThemeLayouts } from '~assets/theme';
 
 type IconType = {
   color?: string;
@@ -58,7 +59,8 @@ const FacebookIcon = (props: SvgProps) => (
       height: 28,
       borderRadius: 100,
     }}>
-    <View style={{ position: 'absolute', bottom: 0, right: 0 }}>
+    <View
+      style={{ position: ThemeLayouts.position.absolute, bottom: 0, right: 0 }}>
       <Svg width="11" height="18" viewBox="0 0 11 18" fill="none" {...props}>
         <Path
           d="M6.72854 10.8578H9.98512L10.4966 7.54965H6.72854V5.74142C6.72854 4.36731 7.17777 3.14861 8.46316 3.14861H10.5287V0.261991C10.1657 0.212916 9.3981 0.105957 7.94787 0.105957C4.91905 0.105957 3.14354 1.7053 3.14354 5.34944V7.55028H0.0297852V10.8584H3.14291V19.9512C3.75949 20.043 4.38426 20.106 5.02538 20.106C5.60485 20.106 6.17047 20.0531 6.72854 19.9776V10.8578Z"
@@ -153,8 +155,8 @@ const BadgeCheckIcon = (props: SvgProps) => (
       height: 90,
       borderRadius: 100,
       backgroundColor: '#4C46B8',
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: ThemeLayouts.justifyContent.center,
+      alignItems: ThemeLayouts.alignItems.center,
       shadowColor: '#4C46B8',
       shadowOffset: { width: 0, height: 16 },
       shadowOpacity: 0.8,
@@ -387,8 +389,8 @@ const FilterIcon = (props: SvgProps) => {
         height: 50,
         borderRadius: 10,
         backgroundColor: '#4C46B8',
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: ThemeLayouts.justifyContent.center,
+        alignItems: ThemeLayouts.alignItems.center,
       }}>
       <Svg width="24" height="24" viewBox="0 0 24 24" fill="none" {...props}>
         <Path
@@ -441,8 +443,8 @@ const FavoriteIcon = ({
         height: 36,
         borderRadius: 100,
         backgroundColor: ThemeColors.white,
-        justifyContent: 'center',
-        alignItems: 'center',
+        justifyContent: ThemeLayouts.justifyContent.center,
+        alignItems: ThemeLayouts.alignItems.center,
         shadowColor: ThemeColors.gray,
         shadowOffset: { width: 0, height: 5 },
         shadowOpacity: 0.2,

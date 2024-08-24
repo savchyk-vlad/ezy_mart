@@ -1,11 +1,14 @@
 import React from 'react';
 import { ScrollView } from 'react-native';
+import { useStyles } from 'react-native-unistyles';
 
 import { SearchBar } from '~components';
 import { NewFashion, NewOffers } from '../components';
-import styles from './styles';
+import stylesheet from './styles';
 
 const Home = () => {
+  const { styles } = useStyles(stylesheet);
+
   return (
     <ScrollView
       style={styles.home_view_scrollView}
